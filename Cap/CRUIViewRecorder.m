@@ -14,6 +14,7 @@
   if ((self = [super init])) {
     _view = view;
     _size = size;
+    //_overlayView = [[CRUIOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
   }
   return self;
 }
@@ -22,7 +23,7 @@
   return _size;
 }
 
-- (void)renderInContext:(CGContextRef)context {
+- (void)renderWithWriter:(id<CRWriter>)writer context:(CGContextRef)context {
   CGContextSaveGState(context);
   CGContextConcatCTM(context, CGAffineTransformMake(1, 0, 0, -1, 0, _size.height));
   CGContextTranslateCTM(context, _view.center.x, _view.center.y);

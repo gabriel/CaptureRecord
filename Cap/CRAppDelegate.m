@@ -9,9 +9,8 @@
 #import "CRAppDelegate.h"
 #import "CRTestView.h"
 #import "CRMoviePlayerView.h"
-#import "CRUIViewRecorder.h"
-#import "CRScreenRecorder.h"
-#import "CRUserRecorder.h"
+#import "CRRecorder.h"
+#import "CRUIWindow.h"
 
 @implementation CRAppDelegate
 
@@ -23,19 +22,12 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor blackColor];
   
   _viewStack = [[YKUIViewStack alloc] initWithParentView:self.window];
   
-#if TARGET_IPHONE_SIMULATOR
-  CRUIViewRecorder *viewRecoder = [[CRUIViewRecorder alloc] initWithView:self.window size:CGSizeMake(320, 480)];
-#else
-  CRUIViewRecorder *viewRecoder = [[CRUIViewRecorder alloc] initWithView:self.window size:CGSizeMake(320, 480)];
-  //CRScreenRecorder *viewRecoder = [[CRScreenRecorder alloc] init];
-#endif
-  CRUserRecorder *userRecorder = nil;// [[CRUserRecorder alloc] init];
-  _videoRecorder = [[CRVideoRecorder alloc] initWithRecordables:[NSArray arrayWithObjects:viewRecoder, userRecorder, nil]];
+  _recorder = [[CRRecorder alloc] initWithWindow:self.window];
   
   _tableView = [[YKTableView alloc] init];
   YKSUIView *mainView = [YKSUIView viewWithView:_tableView];
@@ -43,17 +35,17 @@
   
   __block CRAppDelegate *blockSelf = self;
   [self addActionWithTitle:@"Start" targetBlock:^() {
-    [blockSelf->_videoRecorder start:nil];
+    [blockSelf->_recorder start:nil];
   }];
   
   [self addActionWithTitle:@"Stop" targetBlock:^() {
-    [blockSelf->_videoRecorder stop:nil];
+    [blockSelf->_recorder stop:nil];
   }];
 
-  [self addActionWithTitle:@"Open" targetBlock:^() {
+  [self addActionWithTitle:@"Play" targetBlock:^() {
     CRMoviePlayerView *moviePlayerView = [[CRMoviePlayerView alloc] init];
-    [moviePlayerView setFileURL:blockSelf->_videoRecorder.fileURL];
-    [mainView pushView:[YKSUIView viewWithView:moviePlayerView] duration:0.25 options:YKSUIViewAnimationOptionTransitionSlideOver];
+    [moviePlayerView setFileURL:blockSelf->_recorder.fileURL];
+    [mainView pushView:[YKSUIView viewWithView:moviePlayerView title:@"Play"] duration:0.25 options:YKSUIViewAnimationOptionTransitionSlideOver];
   }];
 
   [_viewStack setView:mainView duration:0 options:0];

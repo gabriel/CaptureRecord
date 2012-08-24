@@ -1,16 +1,16 @@
 //
-//  CRVideoRecorder.m
+//  CRVideoWriter.m
 //  Cap
 //
 //  Created by Gabriel Handford on 8/13/12.
 //  Copyright (c) 2012 Gabriel Handford. All rights reserved.
 //
 
-#import "CRVideoRecorder.h"
+#import "CRVideoWriter.h"
 
-@implementation CRVideoRecorder
+@implementation CRVideoWriter
 
-@synthesize fileURL=_fileURL;
+@synthesize fileURL=_fileURL, event=_event;
 
 - (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables {
   if ((self = [super init])) {
@@ -32,7 +32,12 @@
 }
 
 - (void)dealloc {
+  [self _stopTimer];
   if (_data) free(_data);
+}
+
+- (BOOL)isStarted {
+  return !!_writer;
 }
 
 - (BOOL)start:(NSError **)error {
@@ -92,10 +97,18 @@
 }
 
 - (void)_startTimer {
-  _timer = [NSTimer scheduledTimerWithTimeInterval:1.0/30.0 target:self selector:@selector(_render) userInfo:nil repeats:YES];
-  // So timer fires while scrolling
-  [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
-  [_timer fire];
+  if (_timer != NULL) return;
+  
+  dispatch_queue_t global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+  _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, global);
+  uint64_t interval = 0.05 * NSEC_PER_SEC; // 16ms
+  uint64_t leeway = 0.1 * NSEC_PER_SEC;
+  dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), interval, leeway);
+  __block id blockSelf = self;
+  dispatch_source_set_event_handler(_timer, ^() {
+    [blockSelf render:nil];
+  });
+  dispatch_resume(_timer);
 }
 
 - (void)_render {
@@ -103,14 +116,23 @@
 }
 
 - (void)_stopTimer {
-  [_timer invalidate];
+  if (_timer) {
+    dispatch_source_cancel(_timer);
+    dispatch_release(_timer);
+  }
   _timer = nil;
 }
 
 - (BOOL)stop:(NSError **)error {
+  if (!_writer) {
+    CRSetError(error, 0, @"Can't stop, its not running");
+    return NO;
+  }
   CRDebug(@"Stopping");
   [self _stopTimer];
+  _bufferAdapter = nil;
   [_writerInput markAsFinished];
+  _writerInput = nil;
   
   for (id<CRRecordable> recordable in _recordables) {
     if ([recordable respondsToSelector:@selector(stop:)]) {
@@ -127,16 +149,13 @@
   
   CRDebug(@"Finishing");
   BOOL success = [_writer finishWriting];
+  _writer = nil;
   if (!success) {
     CRSetError(error, 0, @"Error finishing writing");
     return NO;
   }
   
   CRDebug(@"Finished");
-    
-  _bufferAdapter = nil;
-  _writerInput = nil;
-  _writer = nil;
   return YES;
 }
 
@@ -157,9 +176,11 @@
   CFDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider(image));
   CFDataGetBytes(imageData, CFRangeMake(0, CFDataGetLength(imageData)), pixels);
   
-  if (![_bufferAdapter appendPixelBuffer:pixelBuffer withPresentationTime:time]) {
-    CRSetError(error, 0, @"Error appending pixel buffer");
-    return NO;
+  if (_bufferAdapter) {
+    if (![_bufferAdapter appendPixelBuffer:pixelBuffer withPresentationTime:time]) {
+      CRSetError(error, 0, @"Error appending pixel buffer");
+      return NO;
+    }
   }
   
   CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
@@ -176,6 +197,29 @@
   return context;
 }
 
+- (void)renderEvent:(UIEvent *)event context:(CGContextRef)context {
+  CGSize touchSize = CGSizeMake(40, 40);
+  if (event) {
+    CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:0.5 alpha:0.5].CGColor);
+    if (event.type == UIEventTypeTouches) {
+      for (UITouch *touch in [event allTouches]) {
+        switch (touch.phase) {
+          case UITouchPhaseBegan:
+          case UITouchPhaseMoved:
+          case UITouchPhaseStationary: {
+            CGPoint p = [touch locationInView:touch.window];
+            CGContextFillEllipseInRect(context, CGRectMake(-touchSize.width/2.0f + p.x, -touchSize.height/2.0f + p.y, touchSize.width, touchSize.height));
+            break;
+          }
+          case UITouchPhaseCancelled:
+          case UITouchPhaseEnded:
+            break;
+        }
+      }
+    }
+  }
+}
+
 - (BOOL)render:(NSError **)error {
   NSTimeInterval secondsElapsed = [NSDate timeIntervalSinceReferenceDate] - _startTime;
   int64_t millisElapsed = (int64_t)(secondsElapsed * 1000.0);
@@ -183,10 +227,17 @@
   
   CGContextRef context = [self _createBitmapContext];
   
+  CGFloat width = 0;
   for (id<CRRecordable> recordable in _recordables) {
-    [recordable renderInContext:context];
+    [recordable renderWithWriter:self context:context];
+    width += [recordable size].width;
     CGContextTranslateCTM(context, [recordable size].width, 0);
   }
+  // Translate back to 0
+  CGContextTranslateCTM(context, -width, 0);
+  
+  if (self.event) [self renderEvent:self.event context:context];
+  
   CGImageRef image = CGBitmapContextCreateImage(context);
   CGContextRelease(context);
   

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Gabriel Handford. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "CRRecordable.h"
 
-@interface CRUserRecorder : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate> {
+@interface CRUserRecorder : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate, CRRecordable> {
   AVCaptureSession *_captureSession;
   AVCaptureVideoDataOutput *_videoOutput;
     

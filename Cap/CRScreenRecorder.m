@@ -12,7 +12,7 @@
 
 CGImageRef UIGetScreenImage(void);
 
-- (void)renderInContext:(CGContextRef)context {
+- (void)renderWithWriter:(id<CRWriter>)writer context:(CGContextRef)context {
   CGImageRef image = UIGetScreenImage();
   CGContextDrawImage(context, CGRectMake(0, 0, 320, 480), image);
   CGImageRelease(image);

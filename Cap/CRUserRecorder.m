@@ -57,7 +57,7 @@
   
   _videoOutput = [[AVCaptureVideoDataOutput alloc] init];
   _videoOutput.alwaysDiscardsLateVideoFrames = YES;
-  //_videoOutput.minFrameDuration = CMTimeMake(1, 15);
+  _videoOutput.minFrameDuration = CMTimeMake(1, 10);
   _videoOutput.videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey,
                                 nil];
@@ -100,7 +100,7 @@
   CRDebug(@"Closed capture session");
 }
 
-- (void)renderInContext:(CGContextRef)context {
+- (void)renderWithWriter:(id<CRWriter>)writer context:(CGContextRef)context {
   if (_data == NULL) {
     // For testing
     //UIImage *image = [UIImage imageNamed:@"test2.png"];
@@ -113,7 +113,11 @@
   
   CGDataProviderRef dataProvider = CGDataProviderCreateWithData(NULL, _data, _dataSize, NULL);
   CGImageRef image = CGImageCreate(_width, _height, 8, 32, _bytesPerRow, ColorSpace, kCGImageAlphaNoneSkipFirst | kCGBitmapByteOrder32Little, dataProvider, NULL, true, kCGRenderingIntentDefault);
-  CGContextDrawImage(context, CGRectMake(0, 0, 320, 480), image);
+  CGContextSaveGState(context);
+  CGContextTranslateCTM(context, 0, 480);
+  CGContextRotateCTM(context, -M_PI/2.0);
+  CGContextDrawImage(context, CGRectMake(0, 0, 480, 320), image);
+  CGContextRestoreGState(context);
   CGImageRelease(image);
   CGDataProviderRelease(dataProvider);
 }
@@ -133,7 +137,6 @@
   }
   
   CVPixelBufferLockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-  
   
   uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
   size_t dataSize = CVPixelBufferGetDataSize(imageBuffer);

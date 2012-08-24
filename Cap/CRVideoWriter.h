@@ -1,5 +1,5 @@
 //
-//  CRVideoRecorder.h
+//  CRVideoWriter.h
 //  Cap
 //
 //  Created by Gabriel Handford on 8/13/12.
@@ -8,16 +8,18 @@
 
 #import "CRRecordable.h"
 
-@interface CRVideoRecorder : NSObject {
+@interface CRVideoWriter : NSObject <CRWriter> {
   AVAssetWriter *_writer;
   AVAssetWriterInput *_writerInput;
   AVAssetWriterInputPixelBufferAdaptor *_bufferAdapter;
   
   NSURL *_fileURL;
   
-  NSTimer *_timer;
+  dispatch_source_t _timer;
   
   NSTimeInterval _startTime;
+  
+  UIEvent *_event;
   
   NSArray *_recordables;
   CGSize _videoSize;
@@ -31,6 +33,8 @@
 - (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables;
 
 - (BOOL)start:(NSError **)error;
+
+- (BOOL)isStarted;
 
 - (BOOL)stop:(NSError **)error;
 

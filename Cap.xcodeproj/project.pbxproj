@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		005B761115E466EF00190A62 /* CRUIEventRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B761015E466EF00190A62 /* CRUIEventRecorder.m */; };
+		005B761415E467EB00190A62 /* CRUIEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B761315E467EB00190A62 /* CRUIEvent.m */; };
+		005B761715E46B5700190A62 /* CRRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B761615E46B5700190A62 /* CRRecorder.m */; };
+		005B764615E8209000190A62 /* CRUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B764515E8208F00190A62 /* CRUIWindow.m */; };
 		00A79A7915DC7916006D5BE7 /* CRTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A79A7815DC7916006D5BE7 /* CRTestView.m */; };
 		00A79A7B15DC81BE006D5BE7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A79A7A15DC81BE006D5BE7 /* MediaPlayer.framework */; };
 		00A79AE915DDA968006D5BE7 /* CRMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A79AE815DDA968006D5BE7 /* CRMoviePlayerView.m */; };
@@ -20,7 +24,7 @@
 		00D94C5C15DA038C008FDF75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00D94C5A15DA038C008FDF75 /* InfoPlist.strings */; };
 		00D94C5E15DA038C008FDF75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D94C5D15DA038C008FDF75 /* main.m */; };
 		00D94C6215DA038C008FDF75 /* CRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D94C6115DA038C008FDF75 /* CRAppDelegate.m */; };
-		00D94C6D15DA0958008FDF75 /* CRVideoRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D94C6C15DA0958008FDF75 /* CRVideoRecorder.m */; };
+		00D94C6D15DA0958008FDF75 /* CRVideoWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D94C6C15DA0958008FDF75 /* CRVideoWriter.m */; };
 		00D94C7015DA0987008FDF75 /* CRUserRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D94C6F15DA0987008FDF75 /* CRUserRecorder.m */; };
 		00D94CEE15DB1BED008FDF75 /* libYelpKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D94CE815DB1AC3008FDF75 /* libYelpKit.a */; };
 		00D94D5D15DC2353008FDF75 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D94D5C15DC2353008FDF75 /* AVFoundation.framework */; };
@@ -55,6 +59,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		005B760F15E466EF00190A62 /* CRUIEventRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIEventRecorder.h; sourceTree = "<group>"; };
+		005B761015E466EF00190A62 /* CRUIEventRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIEventRecorder.m; sourceTree = "<group>"; };
+		005B761215E467EB00190A62 /* CRUIEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIEvent.h; sourceTree = "<group>"; };
+		005B761315E467EB00190A62 /* CRUIEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIEvent.m; sourceTree = "<group>"; };
+		005B761515E46B5700190A62 /* CRRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRecorder.h; sourceTree = "<group>"; };
+		005B761615E46B5700190A62 /* CRRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRecorder.m; sourceTree = "<group>"; };
+		005B764415E8208F00190A62 /* CRUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIWindow.h; sourceTree = "<group>"; };
+		005B764515E8208F00190A62 /* CRUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIWindow.m; sourceTree = "<group>"; };
 		00A79A7715DC7916006D5BE7 /* CRTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTestView.h; sourceTree = "<group>"; };
 		00A79A7815DC7916006D5BE7 /* CRTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRTestView.m; sourceTree = "<group>"; };
 		00A79A7A15DC81BE006D5BE7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -77,8 +89,8 @@
 		00D94C5F15DA038C008FDF75 /* Cap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cap-Prefix.pch"; sourceTree = "<group>"; };
 		00D94C6015DA038C008FDF75 /* CRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRAppDelegate.h; sourceTree = "<group>"; };
 		00D94C6115DA038C008FDF75 /* CRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRAppDelegate.m; sourceTree = "<group>"; };
-		00D94C6B15DA0958008FDF75 /* CRVideoRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideoRecorder.h; sourceTree = "<group>"; };
-		00D94C6C15DA0958008FDF75 /* CRVideoRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideoRecorder.m; sourceTree = "<group>"; };
+		00D94C6B15DA0958008FDF75 /* CRVideoWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideoWriter.h; sourceTree = "<group>"; };
+		00D94C6C15DA0958008FDF75 /* CRVideoWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideoWriter.m; sourceTree = "<group>"; };
 		00D94C6E15DA0987008FDF75 /* CRUserRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUserRecorder.h; sourceTree = "<group>"; };
 		00D94C6F15DA0987008FDF75 /* CRUserRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUserRecorder.m; sourceTree = "<group>"; };
 		00D94C7415DA0A5B008FDF75 /* CRDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRDefines.h; sourceTree = "<group>"; };
@@ -169,8 +181,10 @@
 			children = (
 				00D94C6015DA038C008FDF75 /* CRAppDelegate.h */,
 				00D94C6115DA038C008FDF75 /* CRAppDelegate.m */,
-				00D94C6B15DA0958008FDF75 /* CRVideoRecorder.h */,
-				00D94C6C15DA0958008FDF75 /* CRVideoRecorder.m */,
+				005B761515E46B5700190A62 /* CRRecorder.h */,
+				005B761615E46B5700190A62 /* CRRecorder.m */,
+				00D94C6B15DA0958008FDF75 /* CRVideoWriter.h */,
+				00D94C6C15DA0958008FDF75 /* CRVideoWriter.m */,
 				00D94C7415DA0A5B008FDF75 /* CRDefines.h */,
 				00A79A7715DC7916006D5BE7 /* CRTestView.h */,
 				00A79A7815DC7916006D5BE7 /* CRTestView.m */,
@@ -184,6 +198,12 @@
 				00A79B0215DDFCA4006D5BE7 /* CRScreenRecorder.m */,
 				00D94C6E15DA0987008FDF75 /* CRUserRecorder.h */,
 				00D94C6F15DA0987008FDF75 /* CRUserRecorder.m */,
+				005B760F15E466EF00190A62 /* CRUIEventRecorder.h */,
+				005B761015E466EF00190A62 /* CRUIEventRecorder.m */,
+				005B761215E467EB00190A62 /* CRUIEvent.h */,
+				005B761315E467EB00190A62 /* CRUIEvent.m */,
+				005B764415E8208F00190A62 /* CRUIWindow.h */,
+				005B764515E8208F00190A62 /* CRUIWindow.m */,
 			);
 			path = Cap;
 			sourceTree = "<group>";
@@ -299,13 +319,17 @@
 			files = (
 				00D94C5E15DA038C008FDF75 /* main.m in Sources */,
 				00D94C6215DA038C008FDF75 /* CRAppDelegate.m in Sources */,
-				00D94C6D15DA0958008FDF75 /* CRVideoRecorder.m in Sources */,
+				00D94C6D15DA0958008FDF75 /* CRVideoWriter.m in Sources */,
 				00D94C7015DA0987008FDF75 /* CRUserRecorder.m in Sources */,
 				00A79A7915DC7916006D5BE7 /* CRTestView.m in Sources */,
 				00A79AE915DDA968006D5BE7 /* CRMoviePlayerView.m in Sources */,
 				00A79AEC15DDC303006D5BE7 /* CRRecordable.m in Sources */,
 				00A79AEF15DDFB70006D5BE7 /* CRUIViewRecorder.m in Sources */,
 				00A79B0315DDFCA4006D5BE7 /* CRScreenRecorder.m in Sources */,
+				005B761115E466EF00190A62 /* CRUIEventRecorder.m in Sources */,
+				005B761415E467EB00190A62 /* CRUIEvent.m in Sources */,
+				005B761715E46B5700190A62 /* CRRecorder.m in Sources */,
+				005B764615E8209000190A62 /* CRUIWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
