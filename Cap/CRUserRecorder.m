@@ -10,6 +10,13 @@
 
 @implementation CRUserRecorder
 
+- (id)init {
+  if ((self = [super init])) {
+    self.presentationTime = kCMTimeNegativeInfinity;
+  }
+  return self;
+}
+
 - (void)dealloc {
   [self close];
 }
@@ -47,14 +54,17 @@
   [_captureSession setSessionPreset:AVCaptureSessionPresetLow]; // AVCaptureSessionPresetMedium
   [_captureSession addInput:videoInput];
   
-  NSArray *audioCaptureDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeAudio];
-  if ([audioCaptureDevices count] > 0) {
-    AVCaptureDevice *audioCaptureDevice = [audioCaptureDevices objectAtIndex:0];
+  AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+  if (audioCaptureDevice) {
     AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:error];
     if (!audioInput) return NO;
+    CRDebug(@"Adding audio input: %@", audioInput);
     [_captureSession addInput:audioInput];
   }
   
+  _queue = dispatch_queue_create("rel.me.Cap", NULL);
+  
+  // Video capture
   _videoOutput = [[AVCaptureVideoDataOutput alloc] init];
   _videoOutput.alwaysDiscardsLateVideoFrames = YES;
   _videoOutput.minFrameDuration = CMTimeMake(1, 10);
@@ -62,7 +72,6 @@
                                 [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey,
                                 nil];
   
-  _queue = dispatch_queue_create("rel.me.Cap", NULL);
   [_videoOutput setSampleBufferDelegate:self queue:_queue];
   
   if (![_captureSession canAddOutput:_videoOutput]) {
@@ -71,14 +80,24 @@
   }
   
   [_captureSession addOutput:_videoOutput];
+  
+  // Audio capture
+  _audioOutput = [[AVCaptureAudioDataOutput alloc] init];
+  [_audioOutput setSampleBufferDelegate:self queue:_queue];
+  [_captureSession addOutput:_audioOutput];
+  
   CRDebug(@"Starting capture session...");
   [_captureSession startRunning];
   CRDebug(@"Started capture session");
   return YES;
 }
 
-- (void)close {
-  if (!_captureSession) return;
+- (BOOL)stop:(NSError **)error {
+  return [self close];
+}
+
+- (BOOL)close {
+  if (!_captureSession) return NO;
   CRDebug(@"Closing capture session");
   [_captureSession stopRunning];
   
@@ -93,11 +112,13 @@
   
   //_videoOutput.sampleBufferDelegate = nil;
   _videoOutput = nil;
+  _audioOutput = nil;
   
   free(_data);
   _data = NULL;
   _dataSize = 0;
   CRDebug(@"Closed capture session");
+  return YES;
 }
 
 - (void)renderWithWriter:(id<CRWriter>)writer context:(CGContextRef)context {
@@ -126,15 +147,17 @@
   return CGSizeMake(320, 480);
 }
 
-#pragma mark AVCaptureVideoDataOutputSampleBufferDelegate
+#pragma mark AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-
-  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-  if (imageBuffer == NULL) {
-    // TODO: Capture audio
+  
+  if (captureOutput == _audioOutput) {
+    [self.audioWriter appendSampleBuffer:sampleBuffer];
     return;
   }
+
+  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+  if (imageBuffer == NULL) return;
   
   CVPixelBufferLockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
   
@@ -152,7 +175,8 @@
     _dataSize = dataSize;
   }
   
-  memcpy(_data, baseAddress, _dataSize); 
+  memcpy(_data, baseAddress, _dataSize);
+  self.presentationTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
   
   CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
 }

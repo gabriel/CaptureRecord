@@ -20,8 +20,7 @@
 #else
     CRScreenRecorder *viewRecoder = [[CRScreenRecorder alloc] init];
 #endif
-    CRUserRecorder *userRecorder = [[CRUserRecorder alloc] init];
-    _videoWriter = [[CRVideoWriter alloc] initWithRecordables:[NSArray arrayWithObjects:viewRecoder, userRecorder, nil]];
+    _videoWriter = [[CRVideoWriter alloc] initWithRecordables:[NSArray arrayWithObjects:viewRecoder, nil] isUserRecordingEnabled:YES];
     
     _window = window;
     _window.eventDelegate = self;

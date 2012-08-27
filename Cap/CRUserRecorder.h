@@ -8,9 +8,10 @@
 
 #import "CRRecordable.h"
 
-@interface CRUserRecorder : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate, CRRecordable> {
+@interface CRUserRecorder : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate, CRRecordable> {
   AVCaptureSession *_captureSession;
   AVCaptureVideoDataOutput *_videoOutput;
+  AVCaptureAudioDataOutput *_audioOutput;
     
   uint8_t *_data; // Data from camera
   size_t _dataSize;
@@ -22,5 +23,8 @@
   
   dispatch_queue_t _queue;
 }
+
+@property (weak) id<CRAudioWriter> audioWriter;
+@property CMTime presentationTime;
 
 @end

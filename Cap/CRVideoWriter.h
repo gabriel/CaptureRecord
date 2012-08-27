@@ -7,21 +7,26 @@
 //
 
 #import "CRRecordable.h"
+#import "CRUserRecorder.h"
 
-@interface CRVideoWriter : NSObject <CRWriter> {
+@interface CRVideoWriter : NSObject <CRWriter, CRAudioWriter> {
   AVAssetWriter *_writer;
   AVAssetWriterInput *_writerInput;
   AVAssetWriterInputPixelBufferAdaptor *_bufferAdapter;
+  
+  AVAssetWriterInput *_audioWriterInput;
   
   NSURL *_fileURL;
   
   dispatch_source_t _timer;
   
   NSTimeInterval _startTime;
+  BOOL _started;
   
   UIEvent *_event;
   
-  NSArray *_recordables;
+  CRUserRecorder *_userRecorder;
+  NSMutableArray *_recordables;
   CGSize _videoSize;
   
   size_t _bytesPerRow;
@@ -30,7 +35,7 @@
 
 @property (readonly, nonatomic) NSURL *fileURL;
 
-- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables;
+- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables isUserRecordingEnabled:(BOOL)isUserRecordingEnabled;
 
 - (BOOL)start:(NSError **)error;
 

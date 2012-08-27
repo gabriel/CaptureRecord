@@ -12,12 +12,20 @@
 
 @synthesize fileURL=_fileURL, event=_event;
 
-- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables {
+- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables isUserRecordingEnabled:(BOOL)isUserRecordingEnabled {
   if ((self = [super init])) {
-    _recordables = recordables;
+    _recordables = [recordables mutableCopy];
+
+    if (!_recordables) _recordables = [NSMutableArray array];
     
+    if (isUserRecordingEnabled) {
+      _userRecorder = [[CRUserRecorder alloc] init];
+      _userRecorder.audioWriter = self;
+      [_recordables addObject:_userRecorder];
+    }
+
     _videoSize = CGSizeZero;
-    for (id<CRRecordable> recordable in recordables) {
+    for (id<CRRecordable> recordable in _recordables) {
       CGSize size = [recordable size];
       _videoSize.width += size.width;
       if (size.height > _videoSize.height) _videoSize.height = size.height;
@@ -32,6 +40,8 @@
 }
 
 - (void)dealloc {
+  if ([self isRunning]) [self stop:nil];
+  _userRecorder.audioWriter = nil;
   [self _stopTimer];
   if (_data) free(_data);
 }
@@ -46,7 +56,7 @@
     return NO;
   }
   
-  NSString *tempFile = [NSFileManager gh_temporaryFile:@"output.m4v" deleteIfExists:YES error:error];
+  NSString *tempFile = [NSFileManager gh_temporaryFile:@"output.mp4" deleteIfExists:YES error:error];
   if (!tempFile) {
     CRSetError(error, 0, @"Can't create temp file");
     return NO;
@@ -55,7 +65,7 @@
   CRDebug(@"File: %@", tempFile);
   
   _fileURL = [NSURL fileURLWithPath:tempFile];
-  _writer = [[AVAssetWriter alloc] initWithURL:_fileURL fileType:AVFileTypeAppleM4V error:error];
+  _writer = [[AVAssetWriter alloc] initWithURL:_fileURL fileType:AVFileTypeMPEG4 error:error];
   if (!_writer) return NO;
 
   NSDictionary *videoCompressionProperties = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -82,9 +92,48 @@
   _bufferAdapter = [AVAssetWriterInputPixelBufferAdaptor assetWriterInputPixelBufferAdaptorWithAssetWriterInput:_writerInput sourcePixelBufferAttributes:bufferAttributes];
   
   [_writer addInput:_writerInput];
-  [_writer startWriting];
-  [_writer startSessionAtSourceTime:CMTimeMake(0, 1000)];
-  _startTime = [NSDate timeIntervalSinceReferenceDate];
+  
+  // Add the audio input
+  AudioChannelLayout acl;
+  bzero(&acl, sizeof(acl));
+  acl.mChannelLayoutTag = kAudioChannelLayoutTag_Mono;
+    
+  /*
+  double preferredHardwareSampleRate = [[AVAudioSession sharedInstance] currentHardwareSampleRate];
+  NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
+                                       [NSNumber numberWithDouble:preferredHardwareSampleRate], AVSampleRateKey,
+                                       [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                       [NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,
+                                       [NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,
+                                       [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                                       [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,
+                                       [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
+                                       nil];
+   */
+
+  /*
+  NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithInt:kAudioFormatiLBC], AVFormatIDKey,
+                                       [NSNumber numberWithInt:12000], AVSampleRateKey,
+                                       [NSNumber numberWithInt:12000], AVEncoderBitRateKey,
+                                       [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                       [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
+                                       nil];
+  */
+
+  NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSNumber numberWithInt:kAudioFormatMPEG4AAC], AVFormatIDKey,
+                                       [NSNumber numberWithInt:12000], AVSampleRateKey,
+                                       [NSNumber numberWithInt:12000], AVEncoderBitRateKey,
+                                       //[NSNumber numberWithInt:AVAudioQualityLow], AVEncoderAudioQualityKey,
+                                       [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                       [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
+                                       nil];
+
+  _audioWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:audioOutputSettings];
+  _audioWriterInput.expectsMediaDataInRealTime = YES;
+  [_writer addInput:_audioWriterInput];
   
   for (id<CRRecordable> recordable in _recordables) {
     if ([recordable respondsToSelector:@selector(start:)]) {
@@ -123,6 +172,10 @@
   _timer = nil;
 }
 
+- (BOOL)isRunning {
+  return !!_writer;
+}
+
 - (BOOL)stop:(NSError **)error {
   if (!_writer) {
     CRSetError(error, 0, @"Can't stop, its not running");
@@ -130,38 +183,70 @@
   }
   CRDebug(@"Stopping");
   [self _stopTimer];
-  _bufferAdapter = nil;
-  [_writerInput markAsFinished];
-  _writerInput = nil;
   
   for (id<CRRecordable> recordable in _recordables) {
     if ([recordable respondsToSelector:@selector(stop:)]) {
       [recordable stop:nil];
     }
   }
+  
+  _bufferAdapter = nil;
+  [_writerInput markAsFinished];
+  _writerInput = nil;
+  [_audioWriterInput markAsFinished];
+  _audioWriterInput = nil;
 
   int status = _writer.status;
   CRDebug(@"Waiting to mark finished");
+  NSUInteger i = 0;
   while (status == AVAssetWriterStatusUnknown) {
     [NSThread sleepForTimeInterval:0.1f];
     status = _writer.status;
+    if (i++ > 100) {
+      CRWarn(@"Timeout waiting for writer to finish");
+      break;
+    }
   }
   
   CRDebug(@"Finishing");
   BOOL success = [_writer finishWriting];
-  _writer = nil;
+  
+  if (_writer.error) {
+    CRWarn(@"Writer error: %@", _writer.error);
+  }
+  
   if (!success) {
     CRSetError(error, 0, @"Error finishing writing");
     return NO;
   }
-  
+
+  _writer = nil;
   CRDebug(@"Finished");
   return YES;
 }
 
+- (BOOL)appendSampleBuffer:(CMSampleBufferRef)sampleBuffer {
+  if (!_started) return NO;
+
+  if (![_audioWriterInput isReadyForMoreMediaData]) {
+    CRDebug(@"Not ready for more data (audio)");
+    return NO;
+  }
+  //CMTime time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+  //CRDebug(@"Audio timestamp: %0.2f", ((double)time.value * time.timescale));
+  return [_audioWriterInput appendSampleBuffer:sampleBuffer];
+}
+
 - (BOOL)writeVideoFrameAtTime:(CMTime)time image:(CGImageRef)image error:(NSError **)error {
+  if (!_started) {
+    _started = YES;
+    CRDebug(@"Starting writing");
+    [_writer startWriting];
+    [_writer startSessionAtSourceTime:time];
+  }
+  
   if (![_writerInput isReadyForMoreMediaData]) {
-    CRDebug(@"Not ready for more data");
+    CRDebug(@"Not ready for more data (video)");
     return NO;
   }
   
@@ -176,11 +261,9 @@
   CFDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider(image));
   CFDataGetBytes(imageData, CFRangeMake(0, CFDataGetLength(imageData)), pixels);
   
-  if (_bufferAdapter) {
-    if (![_bufferAdapter appendPixelBuffer:pixelBuffer withPresentationTime:time]) {
-      CRSetError(error, 0, @"Error appending pixel buffer");
-      return NO;
-    }
+  if (_bufferAdapter && ![_bufferAdapter appendPixelBuffer:pixelBuffer withPresentationTime:time]) {
+    CRSetError(error, 0, @"Error appending pixel buffer");
+    return NO;
   }
   
   CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
@@ -220,11 +303,16 @@
   }
 }
 
-- (BOOL)render:(NSError **)error {
+- (int64_t)millisEllapsed {
   NSTimeInterval secondsElapsed = [NSDate timeIntervalSinceReferenceDate] - _startTime;
-  int64_t millisElapsed = (int64_t)(secondsElapsed * 1000.0);
-  CRDebug(@"Rendering frame: %0.2f", secondsElapsed);
-  
+  return (int64_t)secondsElapsed * 1000.0;
+}
+
+- (BOOL)render:(NSError **)error {
+  if (_startTime == 0) {
+    _startTime = [NSDate timeIntervalSinceReferenceDate];
+  }
+
   CGContextRef context = [self _createBitmapContext];
   
   CGFloat width = 0;
@@ -235,13 +323,27 @@
   }
   // Translate back to 0
   CGContextTranslateCTM(context, -width, 0);
-  
+  // Render touches
   if (self.event) [self renderEvent:self.event context:context];
   
   CGImageRef image = CGBitmapContextCreateImage(context);
   CGContextRelease(context);
   
-  BOOL success = [self writeVideoFrameAtTime:CMTimeMake(millisElapsed, 1000) image:image error:error];
+  CMTime time = kCMTimeNegativeInfinity;
+  if (_userRecorder) {
+    time = [_userRecorder presentationTime];
+    if (CMTIME_IS_NEGATIVE_INFINITY(time)) {
+      CRDebug(@"No presentation time, skipping");
+      return NO;
+    }
+  } else {
+    int64_t millisElapsed = [self millisEllapsed];
+    time = CMTimeMake(millisElapsed, 1000);
+  }
+    
+  CRDebug(@"Rendering frame: %0.2f", (double)time.value/(double)time.timescale);
+  
+  BOOL success = [self writeVideoFrameAtTime:time image:image error:error];
   CGImageRelease(image);
   return success;
 }

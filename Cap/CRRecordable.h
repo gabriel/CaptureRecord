@@ -17,3 +17,7 @@
 - (BOOL)start:(NSError **)error;
 - (BOOL)stop:(NSError **)error;
 @end
+
+@protocol CRAudioWriter <NSObject>
+- (BOOL)appendSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+@end
