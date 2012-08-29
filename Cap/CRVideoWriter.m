@@ -7,21 +7,29 @@
 //
 
 #import "CRVideoWriter.h"
+#import "CRRecorder.h"
+
+@interface CRVideoWriter ()
+@property (readwrite, strong) NSURL *assetURL;
+@end
 
 @implementation CRVideoWriter
 
-@synthesize fileURL=_fileURL, event=_event;
+@synthesize event=_event;
 
-- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables isUserRecordingEnabled:(BOOL)isUserRecordingEnabled {
+- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables options:(CRRecorderOptions)options {
   if ((self = [super init])) {
     _recordables = [recordables mutableCopy];
+    _options = options;
 
     if (!_recordables) _recordables = [NSMutableArray array];
     
-    if (isUserRecordingEnabled) {
+    if ((_options & CRRecorderOptionUserRecording) == CRRecorderOptionUserRecording) {
+#if !TARGET_IPHONE_SIMULATOR
       _userRecorder = [[CRUserRecorder alloc] init];
       _userRecorder.audioWriter = self;
       [_recordables addObject:_userRecorder];
+#endif
     }
 
     _videoSize = CGSizeZero;
@@ -46,7 +54,7 @@
   if (_data) free(_data);
 }
 
-- (BOOL)isStarted {
+- (BOOL)isRunning {
   return !!_writer;
 }
 
@@ -64,6 +72,9 @@
   
   CRDebug(@"File: %@", tempFile);
   
+  self.assetURL = nil;
+  _startTime = 0;
+  _previousPresentationTime = kCMTimeNegativeInfinity;
   _fileURL = [NSURL fileURLWithPath:tempFile];
   _writer = [[AVAssetWriter alloc] initWithURL:_fileURL fileType:AVFileTypeMPEG4 error:error];
   if (!_writer) return NO;
@@ -148,10 +159,10 @@
 - (void)_startTimer {
   if (_timer != NULL) return;
   
-  dispatch_queue_t global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+  dispatch_queue_t global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
   _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, global);
-  uint64_t interval = 0.05 * NSEC_PER_SEC; // 16ms
-  uint64_t leeway = 0.1 * NSEC_PER_SEC;
+  uint64_t interval = 0.05 * NSEC_PER_SEC;
+  uint64_t leeway = 0.01 * NSEC_PER_SEC;
   dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), interval, leeway);
   __block id blockSelf = self;
   dispatch_source_set_event_handler(_timer, ^() {
@@ -168,12 +179,8 @@
   if (_timer) {
     dispatch_source_cancel(_timer);
     dispatch_release(_timer);
+    _timer = nil;
   }
-  _timer = nil;
-}
-
-- (BOOL)isRunning {
-  return !!_writer;
 }
 
 - (BOOL)stop:(NSError **)error {
@@ -190,39 +197,45 @@
     }
   }
   
-  _bufferAdapter = nil;
-  [_writerInput markAsFinished];
-  _writerInput = nil;
-  [_audioWriterInput markAsFinished];
-  _audioWriterInput = nil;
+  BOOL success = NO;
 
-  int status = _writer.status;
-  CRDebug(@"Waiting to mark finished");
-  NSUInteger i = 0;
-  while (status == AVAssetWriterStatusUnknown) {
-    [NSThread sleepForTimeInterval:0.1f];
-    status = _writer.status;
-    if (i++ > 100) {
-      CRWarn(@"Timeout waiting for writer to finish");
-      break;
+  if (_writer.status != AVAssetWriterStatusUnknown) {
+    [_writerInput markAsFinished];
+    [_audioWriterInput markAsFinished];
+    _writerInput = nil;
+    _audioWriterInput = nil;
+    if (_pixelBuffer) {
+      CVPixelBufferRelease(_pixelBuffer);
+      _pixelBuffer = nil;
+    }  
+    _bufferAdapter = nil;
+    
+    CRDebug(@"Waiting to mark finished");
+    NSUInteger i = 0;
+    while (_writer.status == AVAssetWriterStatusUnknown) {
+      [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+      if (i++ > 100) {
+        CRWarn(@"Timed out waiting for writer to finish");
+        break;
+      }
+    }
+    
+    CRDebug(@"Finishing");
+    success = [_writer finishWriting];
+    if (!success) {
+      CRSetError(error, 0, @"Error finishing writing");
     }
   }
-  
-  CRDebug(@"Finishing");
-  BOOL success = [_writer finishWriting];
-  
+    
   if (_writer.error) {
     CRWarn(@"Writer error: %@", _writer.error);
   }
   
-  if (!success) {
-    CRSetError(error, 0, @"Error finishing writing");
-    return NO;
-  }
-
+  _started = NO;
   _writer = nil;
   CRDebug(@"Finished");
-  return YES;
+
+  return success;
 }
 
 - (BOOL)appendSampleBuffer:(CMSampleBufferRef)sampleBuffer {
@@ -250,40 +263,46 @@
     return NO;
   }
   
-  CVPixelBufferRef pixelBuffer = NULL;
-  CVReturn status = CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, _bufferAdapter.pixelBufferPool, &pixelBuffer);
-  if (status != kCVReturnSuccess) {
-    CRSetError(error, 0, @"Error creating pixel buffer");
-    return NO;
+  if (!_pixelBuffer) {
+    CVReturn status = CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, _bufferAdapter.pixelBufferPool, &_pixelBuffer);
+    if (status != kCVReturnSuccess) {
+      if (_writer.error) {
+        if (error) *error = _writer.error;
+        CRWarn(@"Error creating pixel buffer: %@", _writer.error);
+      } else {
+        CRSetError(error, 0, @"Error creating pixel buffer");
+      }
+      return NO;
+    }
   }
-  CVPixelBufferLockBaseAddress(pixelBuffer, 0);
-  uint8_t *pixels = CVPixelBufferGetBaseAddress(pixelBuffer);
+  CVPixelBufferLockBaseAddress(_pixelBuffer, 0);
+  uint8_t *pixels = CVPixelBufferGetBaseAddress(_pixelBuffer);
   CFDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider(image));
   CFDataGetBytes(imageData, CFRangeMake(0, CFDataGetLength(imageData)), pixels);
   
-  if (_bufferAdapter && ![_bufferAdapter appendPixelBuffer:pixelBuffer withPresentationTime:time]) {
-    CRSetError(error, 0, @"Error appending pixel buffer");
+  if (_bufferAdapter && ![_bufferAdapter appendPixelBuffer:_pixelBuffer withPresentationTime:time]) {
+    if (_writer.error) {
+      if (error) *error = _writer.error;
+      CRWarn(@"Error appending pixel buffer: %@", _writer.error);
+    } else {
+      CRSetError(error, 0, @"Error appending pixel buffer");
+    }
     return NO;
   }
   
-  CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
-  CVPixelBufferRelease(pixelBuffer);
+  CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
   CFRelease(imageData);
   return YES;
 }
 
-- (CGContextRef)_createBitmapContext {
-  static CGColorSpaceRef ColorSpace = NULL;
-  if (ColorSpace == NULL) ColorSpace = CGColorSpaceCreateDeviceRGB();
-  CGContextRef context = CGBitmapContextCreate(_data, _videoSize.width, _videoSize.height, 8, _bytesPerRow, ColorSpace, kCGImageAlphaNoneSkipFirst);
-  CGContextSetAllowsAntialiasing(context, NO);
-  return context;
-}
-
 - (void)renderEvent:(UIEvent *)event context:(CGContextRef)context {
+  CGContextSetAllowsAntialiasing(context, YES);
+
   CGSize touchSize = CGSizeMake(40, 40);
   if (event) {
     CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:0.5 alpha:0.5].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0 alpha:0].CGColor);
+    CGContextSetLineWidth(context, 2.0);
     if (event.type == UIEventTypeTouches) {
       for (UITouch *touch in [event allTouches]) {
         switch (touch.phase) {
@@ -291,7 +310,9 @@
           case UITouchPhaseMoved:
           case UITouchPhaseStationary: {
             CGPoint p = [touch locationInView:touch.window];
-            CGContextFillEllipseInRect(context, CGRectMake(-touchSize.width/2.0f + p.x, -touchSize.height/2.0f + p.y, touchSize.width, touchSize.height));
+            CGRect rect = CGRectMake(-touchSize.width/2.0f + p.x, -touchSize.height/2.0f + p.y, touchSize.width, touchSize.height);
+            CGContextFillEllipseInRect(context, rect);
+            CGContextStrokeEllipseInRect(context, rect);
             break;
           }
           case UITouchPhaseCancelled:
@@ -303,9 +324,9 @@
   }
 }
 
-- (int64_t)millisEllapsed {
+- (double)millisEllapsed {
   NSTimeInterval secondsElapsed = [NSDate timeIntervalSinceReferenceDate] - _startTime;
-  return (int64_t)secondsElapsed * 1000.0;
+  return secondsElapsed * 1000.0;
 }
 
 - (BOOL)render:(NSError **)error {
@@ -313,7 +334,10 @@
     _startTime = [NSDate timeIntervalSinceReferenceDate];
   }
 
-  CGContextRef context = [self _createBitmapContext];
+  static CGColorSpaceRef ColorSpace = NULL;
+  if (ColorSpace == NULL) ColorSpace = CGColorSpaceCreateDeviceRGB();
+  CGContextRef context = CGBitmapContextCreate(_data, _videoSize.width, _videoSize.height, 8, _bytesPerRow, ColorSpace, kCGImageAlphaNoneSkipFirst);
+  CGContextSetAllowsAntialiasing(context, NO);
   
   CGFloat width = 0;
   for (id<CRRecordable> recordable in _recordables) {
@@ -323,8 +347,11 @@
   }
   // Translate back to 0
   CGContextTranslateCTM(context, -width, 0);
+  
   // Render touches
-  if (self.event) [self renderEvent:self.event context:context];
+  if ((_options & CRRecorderOptionTouchRecording) == CRRecorderOptionTouchRecording) {
+    if (self.event) [self renderEvent:self.event context:context];
+  }
   
   CGImageRef image = CGBitmapContextCreateImage(context);
   CGContextRelease(context);
@@ -337,15 +364,91 @@
       return NO;
     }
   } else {
-    int64_t millisElapsed = [self millisEllapsed];
+    double millisElapsed = [self millisEllapsed];
     time = CMTimeMake(millisElapsed, 1000);
   }
     
   CRDebug(@"Rendering frame: %0.2f", (double)time.value/(double)time.timescale);
+  BOOL success = NO;
+  if (CMTimeCompare(_previousPresentationTime, time) >= 0) {
+    CRDebug(@"Presentation time unchanged, skipping");
+  } else {
+    _previousPresentationTime = time;
+    success = [self writeVideoFrameAtTime:time image:image error:error];
+    if (!success) {
+      CRWarn(@"Error rendering video frame: %@", (error ? *error : nil));
+    }
+  }
   
-  BOOL success = [self writeVideoFrameAtTime:time image:image error:error];
   CGImageRelease(image);
   return success;
+}
+
+#pragma mark Asset Library
+
+- (void)saveToAlbumWithName:(NSString *)name resultBlock:(CRRecorderSaveResultBlock)resultBlock failureBlock:(CRRecorderSaveFailureBlock)failureBlock {
+  if (!_fileURL) {
+    if (failureBlock) failureBlock([NSError gh_errorWithDomain:CRErrorDomain code:CRErrorCodeInvalidVideo localizedDescription:@"No video available to save."]);
+    return;
+  }
+  
+  if ([self isRunning]) {
+    if (failureBlock) failureBlock([NSError gh_errorWithDomain:CRErrorDomain code:CRErrorCodeInvalidVideo localizedDescription:@"You must stop recording to save the video."]);
+    return;
+  }
+  
+  CRDebug(@"Saving to album");
+  [self _saveToAlbumWithName:name URL:_fileURL resultBlock:resultBlock failureBlock:failureBlock];
+}
+
+- (void)_saveToAlbumWithName:(NSString *)name URL:(NSURL *)URL resultBlock:(CRRecorderSaveResultBlock)resultBlock failureBlock:(CRRecorderSaveFailureBlock)failureBlock {
+
+  ALAssetsLibrary *library = [CRRecorder sharedAssetsLibrary];
+  
+  [library writeVideoAtPathToSavedPhotosAlbum:URL completionBlock:^(NSURL *assetURL, NSError *error) {
+    self.assetURL = assetURL;
+    if (error) {
+      if (failureBlock) failureBlock(error);
+      return;
+    }
+    
+    if (name) {
+      [self _findOrCreateAlbumWithName:name resultBlock:^(ALAssetsGroup *group) {
+        [library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+          CRDebug(@"Adding asset to group: %@ (editable=%d)", group, group.isEditable);
+          if (![group addAsset:asset]) {
+            CRWarn(@"Failed to add asset to group");
+          }
+          CRDebug(@"Saved to album: %@", asset);
+          if (resultBlock) resultBlock(assetURL);
+        } failureBlock:failureBlock];
+      } failureBlock:failureBlock];
+    } else {
+      if (resultBlock) resultBlock(assetURL);
+    }
+  }];
+}
+
+- (void)_findOrCreateAlbumWithName:(NSString *)name resultBlock:(ALAssetsLibraryGroupResultBlock)resultBlock failureBlock:(ALAssetsLibraryAccessFailureBlock)failureBlock {
+  
+  ALAssetsLibrary *library = [CRRecorder sharedAssetsLibrary];
+  
+  __block BOOL foundAlbum = NO;
+  [library enumerateGroupsWithTypes:ALAssetsGroupAlbum usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+    if ([name compare:[group valueForProperty:ALAssetsGroupPropertyName]] == NSOrderedSame) {
+      CRDebug(@"Found album: %@", name);
+      foundAlbum = YES;
+      *stop = YES;
+      if (resultBlock) resultBlock(group);
+      return;
+    }
+    
+    // When group is nil its the end of the enumeration
+    if (!group && !foundAlbum) {
+      CRDebug(@"Creating album: %@", name);
+      [library addAssetsGroupAlbumWithName:name resultBlock:resultBlock failureBlock:failureBlock];
+    }    
+  } failureBlock:failureBlock];    
 }
 
 @end

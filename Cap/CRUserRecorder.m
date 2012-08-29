@@ -21,7 +21,19 @@
   [self close];
 }
 
-- (void)_setupVideoDevice:(AVCaptureDevice *)videoCaptureDevice {
+- (BOOL)start:(NSError **)error {
+  if (_captureSession) {
+    CRSetError(error, 0, @"Capture session already started");
+    return NO;
+  }
+  
+  _captureSession = [[AVCaptureSession alloc] init];
+  NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+  //AVCaptureDevice *videoCaptureDevice = [devices gh_firstObject]; // For back camera
+  AVCaptureDevice *videoCaptureDevice = [devices lastObject]; // For front camera
+  
+  if (!videoCaptureDevice) return NO;
+  
   [videoCaptureDevice lockForConfiguration:nil];
   if ([videoCaptureDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
     videoCaptureDevice.focusMode = AVCaptureFocusModeContinuousAutoFocus;
@@ -32,21 +44,6 @@
   if ([videoCaptureDevice isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance])
     videoCaptureDevice.whiteBalanceMode = AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance;
   [videoCaptureDevice unlockForConfiguration];
-}
-
-- (BOOL)start:(NSError **)error {
-  if (_captureSession) {
-    CRSetError(error, 0, @"Capture session already started");
-    return NO;
-  }
-  
-  _captureSession = [[AVCaptureSession alloc] init];
-  NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-  
-  //AVCaptureDevice *videoCaptureDevice = [devices gh_firstObject]; // For back camera
-  AVCaptureDevice *videoCaptureDevice = [devices lastObject]; // For front camera
-  if (!videoCaptureDevice) return NO;
-  [self _setupVideoDevice:videoCaptureDevice];
   
   AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoCaptureDevice error:error];
   if (!videoInput) return NO;
@@ -67,12 +64,17 @@
   // Video capture
   _videoOutput = [[AVCaptureVideoDataOutput alloc] init];
   _videoOutput.alwaysDiscardsLateVideoFrames = YES;
-  _videoOutput.minFrameDuration = CMTimeMake(1, 10);
   _videoOutput.videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey,
                                 nil];
-  
   [_videoOutput setSampleBufferDelegate:self queue:_queue];
+  AVCaptureConnection *videoOutputConnection = [_videoOutput connectionWithMediaType:AVMediaTypeVideo];  
+  if (videoOutputConnection.isVideoMinFrameDurationSupported) {
+    videoOutputConnection.videoMinFrameDuration = CMTimeMake(1, 15);
+  }
+  if (videoOutputConnection.isVideoMaxFrameDurationSupported) {
+    videoOutputConnection.videoMaxFrameDuration = CMTimeMake(1, 30);
+  }
   
   if (![_captureSession canAddOutput:_videoOutput]) {
     CRSetError(error, 0, @"Can't add video output: %@", _videoOutput);
@@ -102,13 +104,21 @@
   [_captureSession stopRunning];
   
   // Wait until it stops
-  if (_captureSession.isRunning) {
+  NSUInteger i = 0;
+  while (_captureSession.isRunning) {
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    if (i++ > 100) {
+      CRWarn(@"Timed out waiting for capture session to close");
+      break;
+    }
   }
   
+  [_captureSession removeOutput:_videoOutput];
+  [_captureSession removeOutput:_audioOutput];
   _captureSession = nil;
-  
   dispatch_release(_queue);
+  _queue = nil;
+  self.presentationTime = kCMTimeNegativeInfinity;
   
   //_videoOutput.sampleBufferDelegate = nil;
   _videoOutput = nil;

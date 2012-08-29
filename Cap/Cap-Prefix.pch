@@ -12,6 +12,7 @@
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
   #import <AVFoundation/AVFoundation.h>
+  #import <AssetsLibrary/AssetsLibrary.h>
   #import <YelpKit/YelpKit.h>
   #import <GHKit/GHKit.h>
   #import "CRDefines.h"

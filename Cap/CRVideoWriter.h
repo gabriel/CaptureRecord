@@ -9,21 +9,27 @@
 #import "CRRecordable.h"
 #import "CRUserRecorder.h"
 
+/*!
+ Video writer records a video from a list of recordables.
+ */
 @interface CRVideoWriter : NSObject <CRWriter, CRAudioWriter> {
   AVAssetWriter *_writer;
   AVAssetWriterInput *_writerInput;
   AVAssetWriterInputPixelBufferAdaptor *_bufferAdapter;
   
-  AVAssetWriterInput *_audioWriterInput;
+  CVPixelBufferRef _pixelBuffer;
   
-  NSURL *_fileURL;
+  AVAssetWriterInput *_audioWriterInput;
   
   dispatch_source_t _timer;
   
+  CRRecorderOptions _options;
+  
   NSTimeInterval _startTime;
+  CMTime _previousPresentationTime;
   BOOL _started;
   
-  UIEvent *_event;
+  NSURL *_fileURL;
   
   CRUserRecorder *_userRecorder;
   NSMutableArray *_recordables;
@@ -33,14 +39,41 @@
   uint8_t *_data;
 }
 
-@property (readonly, nonatomic) NSURL *fileURL;
+/*!
+ Create video writer with recordables.
+ @param recordables Recordables
+ @param options Options
+ */
+- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables options:(CRRecorderOptions)options;
 
-- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables isUserRecordingEnabled:(BOOL)isUserRecordingEnabled;
-
+/*!
+ Start the video writer.
+ @param error Out error
+ @result YES if started succesfully, NO otherwise
+ */
 - (BOOL)start:(NSError **)error;
 
-- (BOOL)isStarted;
+/*!
+ @result YES if started and running, NO otherwise
+ */
+- (BOOL)isRunning;
 
+/*!
+ Stop the video writer.
+ @param error Out error
+ */
 - (BOOL)stop:(NSError **)error;
+
+/*!
+ Save the video to the album with name.
+ If the album doesn't exist, it is created.
+ 
+ The video is also saved to the camera roll.
+ 
+ @param name Album name
+ @param resultBlock After successfully saving the video
+ @param failureBlock If there is a failure
+ */
+- (void)saveToAlbumWithName:(NSString *)name resultBlock:(CRRecorderSaveResultBlock)resultBlock failureBlock:(CRRecorderSaveFailureBlock)failureBlock;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 @protocol CRWriter <NSObject>
-@property (readwrite) UIEvent *event;
+@property (strong) UIEvent *event;
 @end
 
 @protocol CRRecordable <NSObject>

@@ -14,7 +14,6 @@
   if ((self = [super init])) {
     _view = view;
     _size = size;
-    //_overlayView = [[CRUIOverlayView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
   }
   return self;
 }

@@ -27,7 +27,7 @@
   
   _viewStack = [[YKUIViewStack alloc] initWithParentView:self.window];
   
-  _recorder = [[CRRecorder alloc] initWithWindow:self.window];
+  _recorder = [[CRRecorder alloc] initWithWindow:self.window options:CRRecorderOptionUserRecording|CRRecorderOptionTouchRecording];
   
   _tableView = [[YKTableView alloc] init];
   YKSUIView *mainView = [YKSUIView viewWithView:_tableView];
@@ -39,13 +39,13 @@
   }];
   
   [self addActionWithTitle:@"Stop" targetBlock:^() {
-    [blockSelf->_recorder stop:nil];
-  }];
-
-  [self addActionWithTitle:@"Play" targetBlock:^() {
-    CRMoviePlayerView *moviePlayerView = [[CRMoviePlayerView alloc] init];
-    [moviePlayerView setFileURL:blockSelf->_recorder.fileURL];
-    [mainView pushView:[YKSUIView viewWithView:moviePlayerView title:@"Play"] duration:0.25 options:YKSUIViewAnimationOptionTransitionSlideOver];
+    if ([blockSelf->_recorder stop:nil]) {
+      [blockSelf->_recorder saveToAlbumWithName:@"Capture Record" resultBlock:^(NSURL *assetURL) {
+        CRDebug(@"Saved");
+      } failureBlock:^(NSError *error) {
+        CRDebug(@"Error saving: %@", error);
+      }];
+    }
   }];
 
   [_viewStack setView:mainView duration:0 options:0];

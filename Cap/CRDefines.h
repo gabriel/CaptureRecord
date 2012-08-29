@@ -22,3 +22,31 @@ nil]]; \
 #define CRWarn(...) do { } while(0)
 #endif
 
+/*!
+ Error domain.
+ */
+extern NSString *const CRErrorDomain;
+
+typedef enum : NSInteger {
+  CRErrorCodeInvalidVideo = -100,
+} CRErrorCode;
+
+/*!
+ CRRecorder options.
+ */
+typedef enum : NSUInteger {
+  CRRecorderOptionUserRecording = 1 << 0, // Record the user using the front facing camera
+  CRRecorderOptionTouchRecording = 1 << 1, // Record touches
+} CRRecorderOptions;
+
+/*!
+ Save result block.
+ @param URL Asset URL. To load the ALAsset, use ALAssetsLibrary assetForURL:resultBlock:failureBlock.
+ */
+typedef void (^CRRecorderSaveResultBlock)(NSURL *URL);
+
+/*!
+ Save failure block.
+ @param error Error
+ */
+typedef void (^CRRecorderSaveFailureBlock)(NSError *error);
