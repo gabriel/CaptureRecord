@@ -8,9 +8,6 @@
 
 #import "CRAppDelegate.h"
 #import "CRTestView.h"
-#import "CRMoviePlayerView.h"
-#import "CRRecorder.h"
-#import "CRUIWindow.h"
 
 @implementation CRAppDelegate
 
@@ -27,25 +24,15 @@
   
   _viewStack = [[YKUIViewStack alloc] initWithParentView:self.window];
   
-  _recorder = [[CRRecorder alloc] initWithWindow:self.window options:CRRecorderOptionUserRecording|CRRecorderOptionTouchRecording];
+  [[CRRecorder sharedRecorder] registerWithName:@"Gabriel" code:@"11qz3PGMUjRkRvSM7aeTtMkm/1k="];
+  [[CRRecorder sharedRecorder] setAlbumName:@"Capture Record"];
   
   _tableView = [[YKTableView alloc] init];
-  YKSUIView *mainView = [YKSUIView viewWithView:_tableView];
-  [mainView.navigationBar setTitle:@"Test" animated:NO];
+  YKSUIView *mainView = [YKSUIView viewWithView:_tableView title:@"Test"];
   
-  __block CRAppDelegate *blockSelf = self;
-  [self addActionWithTitle:@"Start" targetBlock:^() {
-    [blockSelf->_recorder start:nil];
-  }];
-  
-  [self addActionWithTitle:@"Stop" targetBlock:^() {
-    if ([blockSelf->_recorder stop:nil]) {
-      [blockSelf->_recorder saveToAlbumWithName:@"Capture Record" resultBlock:^(NSURL *assetURL) {
-        CRDebug(@"Saved");
-      } failureBlock:^(NSError *error) {
-        CRDebug(@"Error saving: %@", error);
-      }];
-    }
+  [self addActionWithTitle:@"Alert" targetBlock:^() {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Test" message:@"Test" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
   }];
 
   [_viewStack setView:mainView duration:0 options:0];

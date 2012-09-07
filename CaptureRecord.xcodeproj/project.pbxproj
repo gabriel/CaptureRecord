@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		005B769415EED30500190A62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005B769315EED30500190A62 /* Foundation.framework */; };
+		005B769915EED30600190A62 /* CaptureRecord.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B769815EED30600190A62 /* CaptureRecord.h */; };
+		005B76B815EED96400190A62 /* CRDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76A515EED96400190A62 /* CRDefines.m */; };
+		005B76BA15EED96400190A62 /* CRRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76A915EED96400190A62 /* CRRecorder.m */; };
+		005B76BB15EED96400190A62 /* CRScreenRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76AB15EED96400190A62 /* CRScreenRecorder.m */; };
+		005B76BC15EED96400190A62 /* CRUIEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76AD15EED96400190A62 /* CRUIEvent.m */; };
+		005B76BD15EED96400190A62 /* CRUIEventRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76AF15EED96400190A62 /* CRUIEventRecorder.m */; };
+		005B76BE15EED96400190A62 /* CRUIViewRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76B115EED96400190A62 /* CRUIViewRecorder.m */; };
+		005B76BF15EED96400190A62 /* CRUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76B315EED96400190A62 /* CRUIWindow.m */; };
+		005B76C015EED96400190A62 /* CRCameraRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76B515EED96400190A62 /* CRCameraRecorder.m */; };
+		005B76C115EED96400190A62 /* CRVideoWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76B715EED96400190A62 /* CRVideoWriter.m */; };
+		005B76C515EEDCDE00190A62 /* CRUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B76C415EEDCDE00190A62 /* CRUtils.m */; };
+		005B76E115EEE2E500190A62 /* CRRecordable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76A615EED96400190A62 /* CRRecordable.h */; };
+		005B76E215EEE2F700190A62 /* CRDefines.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76A415EED96400190A62 /* CRDefines.h */; };
+		005B76E315EEE2F700190A62 /* CRRecorder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76A815EED96400190A62 /* CRRecorder.h */; };
+		005B76E415EEE2F700190A62 /* CRScreenRecorder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76AA15EED96400190A62 /* CRScreenRecorder.h */; };
+		005B76E515EEE2F700190A62 /* CRUIViewRecorder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76B015EED96400190A62 /* CRUIViewRecorder.h */; };
+		005B76E615EEE2F700190A62 /* CRCameraRecorder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76B415EED96400190A62 /* CRCameraRecorder.h */; };
+		005B76E715EEE2F700190A62 /* CRUIWindow.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76B215EED96400190A62 /* CRUIWindow.h */; };
+		005B76E815EEE2F700190A62 /* CRVideoWriter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76B615EED96400190A62 /* CRVideoWriter.h */; };
+		005B76E915EEE2F700190A62 /* CRUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76C315EEDCDD00190A62 /* CRUtils.h */; };
+		005B76EA15EEE2F700190A62 /* CRUIEvent.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76AC15EED96400190A62 /* CRUIEvent.h */; };
+		005B76EB15EEE2F700190A62 /* CRUIEventRecorder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B76AE15EED96400190A62 /* CRUIEventRecorder.h */; };
+		005B76ED15EEE30F00190A62 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005B76EC15EEE30F00190A62 /* CoreMedia.framework */; };
+		005B771915F480E400190A62 /* CRCGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B771615F480E100190A62 /* CRCGUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		005B771A15F480E400190A62 /* CRUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B771815F480E400190A62 /* CRUIButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		005B771B15F4819A00190A62 /* CRUIButton.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B771715F480E200190A62 /* CRUIButton.h */; };
+		005B771C15F4819D00190A62 /* CRCGUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B771515F480E100190A62 /* CRCGUtils.h */; };
+		005B774615F54FA200190A62 /* CRUIRecordOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 005B774515F54FA200190A62 /* CRUIRecordOverlay.m */; };
+		005B774815F55A2800190A62 /* CRUIRecordOverlay.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 005B774415F54FA100190A62 /* CRUIRecordOverlay.h */; };
+		0060745E15FA8A0600AC6B53 /* CRVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060745D15FA8A0600AC6B53 /* CRVideo.m */; };
+		0060746015FA9C0C00AC6B53 /* CRVideo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0060745C15FA8A0600AC6B53 /* CRVideo.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		005B768E15EED30500190A62 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				005B76E215EEE2F700190A62 /* CRDefines.h in CopyFiles */,
+				005B76E315EEE2F700190A62 /* CRRecorder.h in CopyFiles */,
+				005B76E415EEE2F700190A62 /* CRScreenRecorder.h in CopyFiles */,
+				005B76E515EEE2F700190A62 /* CRUIViewRecorder.h in CopyFiles */,
+				005B76E615EEE2F700190A62 /* CRCameraRecorder.h in CopyFiles */,
+				005B76E715EEE2F700190A62 /* CRUIWindow.h in CopyFiles */,
+				005B76E815EEE2F700190A62 /* CRVideoWriter.h in CopyFiles */,
+				005B76E915EEE2F700190A62 /* CRUtils.h in CopyFiles */,
+				005B76EA15EEE2F700190A62 /* CRUIEvent.h in CopyFiles */,
+				005B76EB15EEE2F700190A62 /* CRUIEventRecorder.h in CopyFiles */,
+				005B769915EED30600190A62 /* CaptureRecord.h in CopyFiles */,
+				005B76E115EEE2E500190A62 /* CRRecordable.h in CopyFiles */,
+				005B771C15F4819D00190A62 /* CRCGUtils.h in CopyFiles */,
+				005B771B15F4819A00190A62 /* CRUIButton.h in CopyFiles */,
+				0060746015FA9C0C00AC6B53 /* CRVideo.h in CopyFiles */,
+				005B774815F55A2800190A62 /* CRUIRecordOverlay.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		005B769015EED30500190A62 /* libCaptureRecord.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCaptureRecord.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		005B769315EED30500190A62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		005B769715EED30500190A62 /* CaptureRecord-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CaptureRecord-Prefix.pch"; sourceTree = "<group>"; };
+		005B769815EED30600190A62 /* CaptureRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaptureRecord.h; sourceTree = "<group>"; };
+		005B76A415EED96400190A62 /* CRDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRDefines.h; sourceTree = "<group>"; };
+		005B76A515EED96400190A62 /* CRDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRDefines.m; sourceTree = "<group>"; };
+		005B76A615EED96400190A62 /* CRRecordable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRecordable.h; sourceTree = "<group>"; };
+		005B76A815EED96400190A62 /* CRRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRecorder.h; sourceTree = "<group>"; };
+		005B76A915EED96400190A62 /* CRRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRecorder.m; sourceTree = "<group>"; };
+		005B76AA15EED96400190A62 /* CRScreenRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRScreenRecorder.h; sourceTree = "<group>"; };
+		005B76AB15EED96400190A62 /* CRScreenRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRScreenRecorder.m; sourceTree = "<group>"; };
+		005B76AC15EED96400190A62 /* CRUIEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIEvent.h; sourceTree = "<group>"; };
+		005B76AD15EED96400190A62 /* CRUIEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIEvent.m; sourceTree = "<group>"; };
+		005B76AE15EED96400190A62 /* CRUIEventRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIEventRecorder.h; sourceTree = "<group>"; };
+		005B76AF15EED96400190A62 /* CRUIEventRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIEventRecorder.m; sourceTree = "<group>"; };
+		005B76B015EED96400190A62 /* CRUIViewRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIViewRecorder.h; sourceTree = "<group>"; };
+		005B76B115EED96400190A62 /* CRUIViewRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIViewRecorder.m; sourceTree = "<group>"; };
+		005B76B215EED96400190A62 /* CRUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIWindow.h; sourceTree = "<group>"; };
+		005B76B315EED96400190A62 /* CRUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIWindow.m; sourceTree = "<group>"; };
+		005B76B415EED96400190A62 /* CRCameraRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCameraRecorder.h; sourceTree = "<group>"; };
+		005B76B515EED96400190A62 /* CRCameraRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCameraRecorder.m; sourceTree = "<group>"; };
+		005B76B615EED96400190A62 /* CRVideoWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideoWriter.h; sourceTree = "<group>"; };
+		005B76B715EED96400190A62 /* CRVideoWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideoWriter.m; sourceTree = "<group>"; };
+		005B76C315EEDCDD00190A62 /* CRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUtils.h; sourceTree = "<group>"; };
+		005B76C415EEDCDE00190A62 /* CRUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUtils.m; sourceTree = "<group>"; };
+		005B76EC15EEE30F00190A62 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		005B771515F480E100190A62 /* CRCGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCGUtils.h; sourceTree = "<group>"; };
+		005B771615F480E100190A62 /* CRCGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCGUtils.m; sourceTree = "<group>"; };
+		005B771715F480E200190A62 /* CRUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIButton.h; sourceTree = "<group>"; };
+		005B771815F480E400190A62 /* CRUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIButton.m; sourceTree = "<group>"; };
+		005B774415F54FA100190A62 /* CRUIRecordOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIRecordOverlay.h; sourceTree = "<group>"; };
+		005B774515F54FA200190A62 /* CRUIRecordOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIRecordOverlay.m; sourceTree = "<group>"; };
+		0060745C15FA8A0600AC6B53 /* CRVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideo.h; sourceTree = "<group>"; };
+		0060745D15FA8A0600AC6B53 /* CRVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideo.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		005B768D15EED30500190A62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				005B76ED15EEE30F00190A62 /* CoreMedia.framework in Frameworks */,
+				005B769415EED30500190A62 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		005B768515EED30500190A62 = {
+			isa = PBXGroup;
+			children = (
+				005B769515EED30500190A62 /* CaptureRecord */,
+				005B769215EED30500190A62 /* Frameworks */,
+				005B769115EED30500190A62 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		005B769115EED30500190A62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				005B769015EED30500190A62 /* libCaptureRecord.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		005B769215EED30500190A62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				005B76EC15EEE30F00190A62 /* CoreMedia.framework */,
+				005B769315EED30500190A62 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		005B769515EED30500190A62 /* CaptureRecord */ = {
+			isa = PBXGroup;
+			children = (
+				005B769815EED30600190A62 /* CaptureRecord.h */,
+				005B76A415EED96400190A62 /* CRDefines.h */,
+				005B76A515EED96400190A62 /* CRDefines.m */,
+				005B76A615EED96400190A62 /* CRRecordable.h */,
+				005B76A815EED96400190A62 /* CRRecorder.h */,
+				005B76A915EED96400190A62 /* CRRecorder.m */,
+				005B76AA15EED96400190A62 /* CRScreenRecorder.h */,
+				005B76AB15EED96400190A62 /* CRScreenRecorder.m */,
+				005B76B015EED96400190A62 /* CRUIViewRecorder.h */,
+				005B76B115EED96400190A62 /* CRUIViewRecorder.m */,
+				005B76B415EED96400190A62 /* CRCameraRecorder.h */,
+				005B76B515EED96400190A62 /* CRCameraRecorder.m */,
+				0060745C15FA8A0600AC6B53 /* CRVideo.h */,
+				0060745D15FA8A0600AC6B53 /* CRVideo.m */,
+				005B76B615EED96400190A62 /* CRVideoWriter.h */,
+				005B76B715EED96400190A62 /* CRVideoWriter.m */,
+				005B76B215EED96400190A62 /* CRUIWindow.h */,
+				005B76B315EED96400190A62 /* CRUIWindow.m */,
+				005B774415F54FA100190A62 /* CRUIRecordOverlay.h */,
+				005B774515F54FA200190A62 /* CRUIRecordOverlay.m */,
+				005B76C315EEDCDD00190A62 /* CRUtils.h */,
+				005B76C415EEDCDE00190A62 /* CRUtils.m */,
+				005B76AC15EED96400190A62 /* CRUIEvent.h */,
+				005B76AD15EED96400190A62 /* CRUIEvent.m */,
+				005B76AE15EED96400190A62 /* CRUIEventRecorder.h */,
+				005B76AF15EED96400190A62 /* CRUIEventRecorder.m */,
+				005B771515F480E100190A62 /* CRCGUtils.h */,
+				005B771615F480E100190A62 /* CRCGUtils.m */,
+				005B771715F480E200190A62 /* CRUIButton.h */,
+				005B771815F480E400190A62 /* CRUIButton.m */,
+				005B769615EED30500190A62 /* Supporting Files */,
+			);
+			path = CaptureRecord;
+			sourceTree = "<group>";
+		};
+		005B769615EED30500190A62 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				005B769715EED30500190A62 /* CaptureRecord-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		005B768F15EED30500190A62 /* CaptureRecord */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 005B769E15EED30600190A62 /* Build configuration list for PBXNativeTarget "CaptureRecord" */;
+			buildPhases = (
+				005B768C15EED30500190A62 /* Sources */,
+				005B768D15EED30500190A62 /* Frameworks */,
+				005B768E15EED30500190A62 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CaptureRecord;
+			productName = CaptureRecord;
+			productReference = 005B769015EED30500190A62 /* libCaptureRecord.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		005B768715EED30500190A62 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Miscellaneum LLC";
+			};
+			buildConfigurationList = 005B768A15EED30500190A62 /* Build configuration list for PBXProject "CaptureRecord" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 005B768515EED30500190A62;
+			productRefGroup = 005B769115EED30500190A62 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				005B768F15EED30500190A62 /* CaptureRecord */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		005B768C15EED30500190A62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				005B76B815EED96400190A62 /* CRDefines.m in Sources */,
+				005B76BA15EED96400190A62 /* CRRecorder.m in Sources */,
+				005B76BB15EED96400190A62 /* CRScreenRecorder.m in Sources */,
+				005B76BC15EED96400190A62 /* CRUIEvent.m in Sources */,
+				005B76BD15EED96400190A62 /* CRUIEventRecorder.m in Sources */,
+				005B76BE15EED96400190A62 /* CRUIViewRecorder.m in Sources */,
+				005B76BF15EED96400190A62 /* CRUIWindow.m in Sources */,
+				005B76C015EED96400190A62 /* CRCameraRecorder.m in Sources */,
+				005B76C115EED96400190A62 /* CRVideoWriter.m in Sources */,
+				005B76C515EEDCDE00190A62 /* CRUtils.m in Sources */,
+				005B771915F480E400190A62 /* CRCGUtils.m in Sources */,
+				005B771A15F480E400190A62 /* CRUIButton.m in Sources */,
+				005B774615F54FA200190A62 /* CRUIRecordOverlay.m in Sources */,
+				0060745E15FA8A0600AC6B53 /* CRVideo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		005B769C15EED30600190A62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		005B769D15EED30600190A62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		005B769F15EED30600190A62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/CaptureRecord.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CaptureRecord/CaptureRecord-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OBJROOT = "$(SRCROOT)/Build";
+				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/CaptureRecord;
+				SKIP_INSTALL = YES;
+				SYMROOT = "$(SRCROOT)/Build/Products";
+			};
+			name = Debug;
+		};
+		005B76A015EED30600190A62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/CaptureRecord.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CaptureRecord/CaptureRecord-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OBJROOT = "$(SRCROOT)/Build";
+				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/CaptureRecord;
+				SKIP_INSTALL = YES;
+				SYMROOT = "$(SRCROOT)/Build/Products";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		005B768A15EED30500190A62 /* Build configuration list for PBXProject "CaptureRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				005B769C15EED30600190A62 /* Debug */,
+				005B769D15EED30600190A62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		005B769E15EED30600190A62 /* Build configuration list for PBXNativeTarget "CaptureRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				005B769F15EED30600190A62 /* Debug */,
+				005B76A015EED30600190A62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 005B768715EED30500190A62 /* Project object */;
+}

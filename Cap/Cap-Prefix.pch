@@ -11,9 +11,7 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
-  #import <AVFoundation/AVFoundation.h>
-  #import <AssetsLibrary/AssetsLibrary.h>
+  #import <CaptureRecord/CaptureRecord.h>
   #import <YelpKit/YelpKit.h>
   #import <GHKit/GHKit.h>
-  #import "CRDefines.h"
 #endif
