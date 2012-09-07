@@ -9,6 +9,9 @@
 #import "CRRecordable.h"
 #import <AVFoundation/AVFoundation.h>
 
+/*!
+ Recorder for the front facing camera.
+ */
 @interface CRCameraRecorder : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate, CRRecordable> {
   AVCaptureSession *_captureSession;
   AVCaptureVideoDataOutput *_videoOutput;
@@ -25,7 +28,14 @@
   dispatch_queue_t _queue;
 }
 
+/*!
+ The current audio writer (the microphone).
+ */
 @property (weak) id<CRAudioWriter> audioWriter;
+
+/*!
+ The presentation time for the current data buffer.
+ */
 @property CMTime presentationTime;
 
 @end

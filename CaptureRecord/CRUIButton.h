@@ -20,9 +20,6 @@ typedef enum {
   CRUIButtonSecondaryTitlePositionBottomLeftSingle, // Bottom left, single line
 } CRUIButtonSecondaryTitlePosition;
 
-/*!
- Button.
- */
 @interface CRUIButton : UIControl {
 
   NSString *_title;
@@ -551,7 +548,7 @@ typedef enum {
 
 /*!
  Set activity indicator animating.
- @param animating
+ @param animating Animating
  */
 - (void)setActivityIndicatorAnimating:(BOOL)animating;
 

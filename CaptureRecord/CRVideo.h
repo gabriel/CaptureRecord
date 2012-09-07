@@ -43,7 +43,6 @@ typedef enum {
 
 /*!
  Mark video as started.
- @param presentationTime Start presentation time
  @result YES if not already started
  */
 - (BOOL)start;
