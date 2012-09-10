@@ -7,7 +7,6 @@
 //
 
 #import "CRUIEventRecorder.h"
-#import "CRUIEvent.h"
 
 @implementation CRUIEventRecorder
 
@@ -20,8 +19,7 @@
 
 - (void)recordEvent:(UIEvent *)event {
   //CRDebug(@"sendEvent: %@", event);
-  CRUIEvent *recordEvent = [[CRUIEvent alloc] initWithEvent:event];
-  [_events addObject:recordEvent];
+  [_events addObject:event];
 }
 
 @end

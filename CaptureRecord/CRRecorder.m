@@ -116,7 +116,7 @@
   UIEvent *event = [notification object];
   if ([_videoWriter isRecording]) {
     //[_eventRecorder recordEvent:event];
-    _videoWriter.event = event;
+    [_videoWriter setEvent:event];
   }
 }
 

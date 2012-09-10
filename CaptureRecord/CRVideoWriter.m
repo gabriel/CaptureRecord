@@ -9,10 +9,9 @@
 #import "CRVideoWriter.h"
 #import "CRRecorder.h"
 #import "CRUtils.h"
+#import "CRUITouch.h"
 
 @implementation CRVideoWriter
-
-@synthesize event=_event;
 
 - (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables options:(CRRecorderOptions)options {
   if ((self = [super init])) {
@@ -156,10 +155,10 @@
   
   dispatch_queue_t global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
   _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, global);
-  uint64_t interval = 0.001 * NSEC_PER_SEC;
-  uint64_t leeway = 0.001 * NSEC_PER_SEC;
+  uint64_t interval = 0.032 * NSEC_PER_SEC;
+  uint64_t leeway = 0.004 * NSEC_PER_SEC;
   dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), interval, leeway);
-  __block id blockSelf = self;
+  __weak id blockSelf = self;
   dispatch_source_set_event_handler(_timer, ^() {
     [blockSelf render:nil];
   });
@@ -292,34 +291,81 @@
   return YES;
 }
 
-- (void)renderEvent:(UIEvent *)event context:(CGContextRef)context {
-  //CGContextSetAllowsAntialiasing(context, YES);
+#pragma mark Events
 
-  CGSize touchSize = CGSizeMake(40, 40);
-  if (event) {
-    CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:0.5 alpha:0.5].CGColor);
-    CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:0 alpha:0].CGColor);
-    CGContextSetLineWidth(context, 2.0);
-    if (event.type == UIEventTypeTouches) {
-      for (UITouch *touch in [event allTouches]) {
-        switch (touch.phase) {
-          case UITouchPhaseBegan:
-          case UITouchPhaseMoved:
-          case UITouchPhaseStationary: {
-            CGPoint p = [touch locationInView:touch.window];
-            CGRect rect = CGRectMake(-touchSize.width/2.0f + p.x, -touchSize.height/2.0f + p.y, touchSize.width, touchSize.height);
-            CGContextFillEllipseInRect(context, rect);
-            CGContextStrokeEllipseInRect(context, rect);
-            break;
-          }
-          case UITouchPhaseCancelled:
-          case UITouchPhaseEnded:
-            break;
-        }
+#define CR_TOUCH_ELAPSE (0.7)
+#define CR_TOUCH_SIZE CGSizeMake(40, 40)
+
+- (BOOL)_renderEvent:(UIEvent *)event context:(CGContextRef)context {
+  if (!event) return NO;
+  if (event.type != UIEventTypeTouches) return NO;  
+  
+  CGSize touchSize = CR_TOUCH_SIZE;
+  
+  for (UITouch *touch in [event allTouches]) {
+    CGPoint p = [touch locationInView:touch.window];
+    CGRect rect = CGRectMake(-touchSize.width/2.0f + p.x, -touchSize.height/2.0f + p.y, touchSize.width, touchSize.height);
+    
+    switch (touch.phase) {
+      case UITouchPhaseBegan:
+      case UITouchPhaseMoved:
+      case UITouchPhaseStationary: {
+        CGContextSetFillColorWithColor(context, [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5].CGColor);
+        CGContextFillEllipseInRect(context, rect);        
+        break;
+      }
+      case UITouchPhaseCancelled:
+      case UITouchPhaseEnded:
+        break;
+    }
+  }
+  return YES;
+}
+
+- (BOOL)_renderTouch:(CRUITouch *)touch context:(CGContextRef)context {
+  NSTimeInterval elapsed = [NSDate timeIntervalSinceReferenceDate] - touch.time;
+  if (elapsed >= CR_TOUCH_ELAPSE) return NO;
+  CGFloat elapsedPercent = (1.0 - (elapsed/CR_TOUCH_ELAPSE));
+  CGSize touchSize = CR_TOUCH_SIZE;
+  
+  CGPoint p = touch.point;
+  CGRect rect = CGRectMake(-touchSize.width/2.0f + p.x, -touchSize.height/2.0f + p.y, touchSize.width, touchSize.height);
+  CGContextSetFillColorWithColor(context, [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5 * elapsedPercent].CGColor);
+  CGContextFillEllipseInRect(context, rect);
+  return YES;
+}
+
+- (void)_renderTouchesInContext:(CGContextRef)context {
+  if (!_touches) return;
+  CRDebug(@"Touches: %d", [_touches count]);
+  
+  @synchronized(_touches) {
+    NSMutableArray *touchesToRemove = [[NSMutableArray alloc] init];
+    for (CRUITouch *touch in _touches) {
+      if (![self _renderTouch:touch context:context]) {
+        [touchesToRemove addObject:touch];
+      }
+    }
+    [_touches removeObjectsInArray:touchesToRemove];
+  }
+}
+
+- (void)setEvent:(UIEvent *)event {
+  if (event.type != UIEventTypeTouches) return;
+
+  _event = event;
+  if (!_touches) _touches = [[NSMutableArray alloc] init];
+  for (UITouch *touch in [event allTouches]) {
+    if (touch.phase == UITouchPhaseEnded) {
+      CRUITouch *crTouch = [[CRUITouch alloc] initWithPoint:[touch locationInView:touch.window]];
+      @synchronized(_touches) {
+        [_touches addObject:crTouch];
       }
     }
   }
 }
+
+#pragma mark -
 
 - (double)_millisEllapsed {
   NSTimeInterval secondsElapsed = [NSDate timeIntervalSinceReferenceDate] - _startTime;
@@ -334,8 +380,9 @@
   static CGColorSpaceRef ColorSpace = NULL;
   if (ColorSpace == NULL) ColorSpace = CGColorSpaceCreateDeviceRGB();
   CGContextRef context = CGBitmapContextCreate(_data, _videoSize.width, _videoSize.height, 8, _bytesPerRow, ColorSpace, kCGImageAlphaNoneSkipFirst);
-  CGContextSetAllowsAntialiasing(context, NO);
-  
+  // Whether anti-aliasing is allowed (Doesn't enable, see CGContextSetShouldAntialias)
+  CGContextSetAllowsAntialiasing(context, YES);
+
   CGFloat width = 0;
   for (id<CRRecordable> recordable in _recordables) {
     [recordable renderInContext:context];
@@ -344,10 +391,13 @@
   }
   // Translate back to 0
   CGContextTranslateCTM(context, -width, 0);
-  
+    
   // Render touches
   if ((_options & CRRecorderOptionTouchRecording) == CRRecorderOptionTouchRecording) {
-    if (self.event) [self renderEvent:self.event context:context];
+    // Anti-alias for touches
+    CGContextSetShouldAntialias(context, YES);
+    [self _renderEvent:_event context:context];
+    [self _renderTouchesInContext:context];
   }
   
   CGImageRef image = CGBitmapContextCreateImage(context);

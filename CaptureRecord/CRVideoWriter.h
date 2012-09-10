@@ -42,10 +42,13 @@
   
   NSUInteger _fps;
   NSTimeInterval _fpsTimeStart;
+  
+  UIEvent *_event;
+  NSMutableArray *_touches;
 }
 
-@property (strong) UIEvent *event;
 @property (readonly, strong) CRVideo *video;
+
 
 /*!
  Create video writer with recordables.
@@ -71,6 +74,12 @@
  @param error Out error
  */
 - (BOOL)stop:(NSError **)error;
+
+/*!
+ Set event.
+ @param event Event
+ */
+- (void)setEvent:(UIEvent *)event;
 
 /*!
  Save the video to the album with name.
