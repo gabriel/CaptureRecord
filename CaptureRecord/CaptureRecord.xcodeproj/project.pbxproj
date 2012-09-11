@@ -7,147 +7,159 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007CF68515FEA4A800196E98 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 007CF68315FEA4A800196E98 /* InfoPlist.strings */; };
-		007CF6AA15FEA4E700196E98 /* CaptureRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF68C15FEA4E700196E98 /* CaptureRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6AB15FEA4E700196E98 /* CRCameraRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF68D15FEA4E700196E98 /* CRCameraRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6AC15FEA4E700196E98 /* CRCameraRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF68E15FEA4E700196E98 /* CRCameraRecorder.m */; };
-		007CF6AD15FEA4E700196E98 /* CRCGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF68F15FEA4E700196E98 /* CRCGUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6AE15FEA4E700196E98 /* CRCGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69015FEA4E700196E98 /* CRCGUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		007CF6AF15FEA4E700196E98 /* CRDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69115FEA4E700196E98 /* CRDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6B015FEA4E700196E98 /* CRDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69215FEA4E700196E98 /* CRDefines.m */; };
-		007CF6B115FEA4E700196E98 /* CRRecordable.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69315FEA4E700196E98 /* CRRecordable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6B215FEA4E700196E98 /* CRRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69415FEA4E700196E98 /* CRRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6B315FEA4E700196E98 /* CRRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69515FEA4E700196E98 /* CRRecorder.m */; };
-		007CF6B415FEA4E700196E98 /* CRScreenRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69615FEA4E700196E98 /* CRScreenRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6B515FEA4E700196E98 /* CRScreenRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69715FEA4E700196E98 /* CRScreenRecorder.m */; };
-		007CF6B615FEA4E700196E98 /* CRUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69815FEA4E700196E98 /* CRUIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6B715FEA4E700196E98 /* CRUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69915FEA4E700196E98 /* CRUIButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		007CF6B815FEA4E700196E98 /* CRUIEventRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69A15FEA4E700196E98 /* CRUIEventRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6B915FEA4E700196E98 /* CRUIEventRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69B15FEA4E700196E98 /* CRUIEventRecorder.m */; };
-		007CF6BA15FEA4E700196E98 /* CRUIRecordOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69C15FEA4E700196E98 /* CRUIRecordOverlay.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6BB15FEA4E700196E98 /* CRUIRecordOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69D15FEA4E700196E98 /* CRUIRecordOverlay.m */; };
-		007CF6BC15FEA4E700196E98 /* CRUITouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF69E15FEA4E700196E98 /* CRUITouch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6BD15FEA4E700196E98 /* CRUITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF69F15FEA4E700196E98 /* CRUITouch.m */; };
-		007CF6BE15FEA4E700196E98 /* CRUIViewRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF6A015FEA4E700196E98 /* CRUIViewRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6BF15FEA4E700196E98 /* CRUIViewRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF6A115FEA4E700196E98 /* CRUIViewRecorder.m */; };
-		007CF6C015FEA4E700196E98 /* CRUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF6A215FEA4E700196E98 /* CRUIWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6C115FEA4E700196E98 /* CRUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF6A315FEA4E700196E98 /* CRUIWindow.m */; };
-		007CF6C215FEA4E700196E98 /* CRUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF6A415FEA4E700196E98 /* CRUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6C315FEA4E700196E98 /* CRUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF6A515FEA4E700196E98 /* CRUtils.m */; };
-		007CF6C415FEA4E700196E98 /* CRVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF6A615FEA4E700196E98 /* CRVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6C515FEA4E700196E98 /* CRVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF6A715FEA4E700196E98 /* CRVideo.m */; };
-		007CF6C615FEA4E700196E98 /* CRVideoWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 007CF6A815FEA4E700196E98 /* CRVideoWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		007CF6C715FEA4E700196E98 /* CRVideoWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 007CF6A915FEA4E700196E98 /* CRVideoWriter.m */; };
+		00F90B5115FFE93F00B5F4DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F90B5015FFE93F00B5F4DF /* Foundation.framework */; };
+		00F90B5715FFE93F00B5F4DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00F90B5515FFE93F00B5F4DF /* InfoPlist.strings */; };
+		00F90B7C15FFE9B200B5F4DF /* CaptureRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B5E15FFE9B200B5F4DF /* CaptureRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B7D15FFE9B200B5F4DF /* CRCameraRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B5F15FFE9B200B5F4DF /* CRCameraRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B7E15FFE9B200B5F4DF /* CRCameraRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6015FFE9B200B5F4DF /* CRCameraRecorder.m */; };
+		00F90B7F15FFE9B200B5F4DF /* CRCGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6115FFE9B200B5F4DF /* CRCGUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B8015FFE9B200B5F4DF /* CRCGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6215FFE9B200B5F4DF /* CRCGUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		00F90B8115FFE9B200B5F4DF /* CRDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6315FFE9B200B5F4DF /* CRDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B8215FFE9B200B5F4DF /* CRDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6415FFE9B200B5F4DF /* CRDefines.m */; };
+		00F90B8315FFE9B200B5F4DF /* CRRecordable.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6515FFE9B200B5F4DF /* CRRecordable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B8415FFE9B200B5F4DF /* CRRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6615FFE9B200B5F4DF /* CRRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B8515FFE9B200B5F4DF /* CRRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6715FFE9B200B5F4DF /* CRRecorder.m */; };
+		00F90B8615FFE9B200B5F4DF /* CRScreenRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6815FFE9B200B5F4DF /* CRScreenRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B8715FFE9B200B5F4DF /* CRScreenRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6915FFE9B200B5F4DF /* CRScreenRecorder.m */; };
+		00F90B8815FFE9B200B5F4DF /* CRUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B8915FFE9B200B5F4DF /* CRUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6B15FFE9B200B5F4DF /* CRUIButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		00F90B8A15FFE9B200B5F4DF /* CRUIEventRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6C15FFE9B200B5F4DF /* CRUIEventRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B8B15FFE9B200B5F4DF /* CRUIEventRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6D15FFE9B200B5F4DF /* CRUIEventRecorder.m */; };
+		00F90B8C15FFE9B200B5F4DF /* CRUIRecordOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B8D15FFE9B200B5F4DF /* CRUIRecordOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6F15FFE9B200B5F4DF /* CRUIRecordOverlay.m */; };
+		00F90B8E15FFE9B200B5F4DF /* CRUITouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7015FFE9B200B5F4DF /* CRUITouch.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B8F15FFE9B200B5F4DF /* CRUITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7115FFE9B200B5F4DF /* CRUITouch.m */; };
+		00F90B9015FFE9B200B5F4DF /* CRUIViewRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7215FFE9B200B5F4DF /* CRUIViewRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B9115FFE9B200B5F4DF /* CRUIViewRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7315FFE9B200B5F4DF /* CRUIViewRecorder.m */; };
+		00F90B9215FFE9B200B5F4DF /* CRUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7415FFE9B200B5F4DF /* CRUIWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B9315FFE9B200B5F4DF /* CRUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7515FFE9B200B5F4DF /* CRUIWindow.m */; };
+		00F90B9415FFE9B200B5F4DF /* CRUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7615FFE9B200B5F4DF /* CRUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B9515FFE9B200B5F4DF /* CRUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7715FFE9B200B5F4DF /* CRUtils.m */; };
+		00F90B9615FFE9B200B5F4DF /* CRVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7815FFE9B200B5F4DF /* CRVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B9715FFE9B200B5F4DF /* CRVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7915FFE9B200B5F4DF /* CRVideo.m */; };
+		00F90B9815FFE9B200B5F4DF /* CRVideoWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7A15FFE9B200B5F4DF /* CRVideoWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00F90B9915FFE9B200B5F4DF /* CRVideoWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7B15FFE9B200B5F4DF /* CRVideoWriter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		007CF67E15FEA4A700196E98 /* CaptureRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		007CF68215FEA4A800196E98 /* CaptureRecord-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CaptureRecord-Info.plist"; sourceTree = "<group>"; };
-		007CF68415FEA4A800196E98 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		007CF68615FEA4A800196E98 /* CaptureRecord-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CaptureRecord-Prefix.pch"; sourceTree = "<group>"; };
-		007CF68C15FEA4E700196E98 /* CaptureRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureRecord.h; sourceTree = "<group>"; };
-		007CF68D15FEA4E700196E98 /* CRCameraRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCameraRecorder.h; sourceTree = "<group>"; };
-		007CF68E15FEA4E700196E98 /* CRCameraRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCameraRecorder.m; sourceTree = "<group>"; };
-		007CF68F15FEA4E700196E98 /* CRCGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCGUtils.h; sourceTree = "<group>"; };
-		007CF69015FEA4E700196E98 /* CRCGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCGUtils.m; sourceTree = "<group>"; };
-		007CF69115FEA4E700196E98 /* CRDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRDefines.h; sourceTree = "<group>"; };
-		007CF69215FEA4E700196E98 /* CRDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRDefines.m; sourceTree = "<group>"; };
-		007CF69315FEA4E700196E98 /* CRRecordable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRecordable.h; sourceTree = "<group>"; };
-		007CF69415FEA4E700196E98 /* CRRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRecorder.h; sourceTree = "<group>"; };
-		007CF69515FEA4E700196E98 /* CRRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRecorder.m; sourceTree = "<group>"; };
-		007CF69615FEA4E700196E98 /* CRScreenRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRScreenRecorder.h; sourceTree = "<group>"; };
-		007CF69715FEA4E700196E98 /* CRScreenRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRScreenRecorder.m; sourceTree = "<group>"; };
-		007CF69815FEA4E700196E98 /* CRUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIButton.h; sourceTree = "<group>"; };
-		007CF69915FEA4E700196E98 /* CRUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIButton.m; sourceTree = "<group>"; };
-		007CF69A15FEA4E700196E98 /* CRUIEventRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIEventRecorder.h; sourceTree = "<group>"; };
-		007CF69B15FEA4E700196E98 /* CRUIEventRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIEventRecorder.m; sourceTree = "<group>"; };
-		007CF69C15FEA4E700196E98 /* CRUIRecordOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIRecordOverlay.h; sourceTree = "<group>"; };
-		007CF69D15FEA4E700196E98 /* CRUIRecordOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIRecordOverlay.m; sourceTree = "<group>"; };
-		007CF69E15FEA4E700196E98 /* CRUITouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUITouch.h; sourceTree = "<group>"; };
-		007CF69F15FEA4E700196E98 /* CRUITouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUITouch.m; sourceTree = "<group>"; };
-		007CF6A015FEA4E700196E98 /* CRUIViewRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIViewRecorder.h; sourceTree = "<group>"; };
-		007CF6A115FEA4E700196E98 /* CRUIViewRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIViewRecorder.m; sourceTree = "<group>"; };
-		007CF6A215FEA4E700196E98 /* CRUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIWindow.h; sourceTree = "<group>"; };
-		007CF6A315FEA4E700196E98 /* CRUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIWindow.m; sourceTree = "<group>"; };
-		007CF6A415FEA4E700196E98 /* CRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUtils.h; sourceTree = "<group>"; };
-		007CF6A515FEA4E700196E98 /* CRUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUtils.m; sourceTree = "<group>"; };
-		007CF6A615FEA4E700196E98 /* CRVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideo.h; sourceTree = "<group>"; };
-		007CF6A715FEA4E700196E98 /* CRVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideo.m; sourceTree = "<group>"; };
-		007CF6A815FEA4E700196E98 /* CRVideoWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideoWriter.h; sourceTree = "<group>"; };
-		007CF6A915FEA4E700196E98 /* CRVideoWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideoWriter.m; sourceTree = "<group>"; };
+		00F90B4D15FFE93F00B5F4DF /* CaptureRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = CaptureRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		00F90B5015FFE93F00B5F4DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		00F90B5415FFE93F00B5F4DF /* CaptureRecord-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CaptureRecord-Info.plist"; sourceTree = "<group>"; };
+		00F90B5615FFE93F00B5F4DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00F90B5815FFE93F00B5F4DF /* CaptureRecord-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CaptureRecord-Prefix.pch"; sourceTree = "<group>"; };
+		00F90B5E15FFE9B200B5F4DF /* CaptureRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureRecord.h; sourceTree = "<group>"; };
+		00F90B5F15FFE9B200B5F4DF /* CRCameraRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCameraRecorder.h; sourceTree = "<group>"; };
+		00F90B6015FFE9B200B5F4DF /* CRCameraRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCameraRecorder.m; sourceTree = "<group>"; };
+		00F90B6115FFE9B200B5F4DF /* CRCGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRCGUtils.h; sourceTree = "<group>"; };
+		00F90B6215FFE9B200B5F4DF /* CRCGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRCGUtils.m; sourceTree = "<group>"; };
+		00F90B6315FFE9B200B5F4DF /* CRDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRDefines.h; sourceTree = "<group>"; };
+		00F90B6415FFE9B200B5F4DF /* CRDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRDefines.m; sourceTree = "<group>"; };
+		00F90B6515FFE9B200B5F4DF /* CRRecordable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRecordable.h; sourceTree = "<group>"; };
+		00F90B6615FFE9B200B5F4DF /* CRRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRRecorder.h; sourceTree = "<group>"; };
+		00F90B6715FFE9B200B5F4DF /* CRRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRRecorder.m; sourceTree = "<group>"; };
+		00F90B6815FFE9B200B5F4DF /* CRScreenRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRScreenRecorder.h; sourceTree = "<group>"; };
+		00F90B6915FFE9B200B5F4DF /* CRScreenRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRScreenRecorder.m; sourceTree = "<group>"; };
+		00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIButton.h; sourceTree = "<group>"; };
+		00F90B6B15FFE9B200B5F4DF /* CRUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIButton.m; sourceTree = "<group>"; };
+		00F90B6C15FFE9B200B5F4DF /* CRUIEventRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIEventRecorder.h; sourceTree = "<group>"; };
+		00F90B6D15FFE9B200B5F4DF /* CRUIEventRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIEventRecorder.m; sourceTree = "<group>"; };
+		00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIRecordOverlay.h; sourceTree = "<group>"; };
+		00F90B6F15FFE9B200B5F4DF /* CRUIRecordOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIRecordOverlay.m; sourceTree = "<group>"; };
+		00F90B7015FFE9B200B5F4DF /* CRUITouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUITouch.h; sourceTree = "<group>"; };
+		00F90B7115FFE9B200B5F4DF /* CRUITouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUITouch.m; sourceTree = "<group>"; };
+		00F90B7215FFE9B200B5F4DF /* CRUIViewRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIViewRecorder.h; sourceTree = "<group>"; };
+		00F90B7315FFE9B200B5F4DF /* CRUIViewRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIViewRecorder.m; sourceTree = "<group>"; };
+		00F90B7415FFE9B200B5F4DF /* CRUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIWindow.h; sourceTree = "<group>"; };
+		00F90B7515FFE9B200B5F4DF /* CRUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIWindow.m; sourceTree = "<group>"; };
+		00F90B7615FFE9B200B5F4DF /* CRUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUtils.h; sourceTree = "<group>"; };
+		00F90B7715FFE9B200B5F4DF /* CRUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUtils.m; sourceTree = "<group>"; };
+		00F90B7815FFE9B200B5F4DF /* CRVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideo.h; sourceTree = "<group>"; };
+		00F90B7915FFE9B200B5F4DF /* CRVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideo.m; sourceTree = "<group>"; };
+		00F90B7A15FFE9B200B5F4DF /* CRVideoWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVideoWriter.h; sourceTree = "<group>"; };
+		00F90B7B15FFE9B200B5F4DF /* CRVideoWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVideoWriter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		007CF67815FEA4A700196E98 /* Frameworks */ = {
+		00F90B4715FFE93F00B5F4DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F90B5115FFE93F00B5F4DF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		007CF66F15FEA4A700196E98 = {
+		00F90B3E15FFE93F00B5F4DF = {
 			isa = PBXGroup;
 			children = (
-				007CF68015FEA4A700196E98 /* CaptureRecord */,
-				007CF67F15FEA4A700196E98 /* Products */,
+				00F90B5215FFE93F00B5F4DF /* CaptureRecord */,
+				00F90B4F15FFE93F00B5F4DF /* Frameworks */,
+				00F90B4E15FFE93F00B5F4DF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		007CF67F15FEA4A700196E98 /* Products */ = {
+		00F90B4E15FFE93F00B5F4DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				007CF67E15FEA4A700196E98 /* CaptureRecord.framework */,
+				00F90B4D15FFE93F00B5F4DF /* CaptureRecord.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		007CF68015FEA4A700196E98 /* CaptureRecord */ = {
+		00F90B4F15FFE93F00B5F4DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				007CF68C15FEA4E700196E98 /* CaptureRecord.h */,
-				007CF68D15FEA4E700196E98 /* CRCameraRecorder.h */,
-				007CF68E15FEA4E700196E98 /* CRCameraRecorder.m */,
-				007CF68F15FEA4E700196E98 /* CRCGUtils.h */,
-				007CF69015FEA4E700196E98 /* CRCGUtils.m */,
-				007CF69115FEA4E700196E98 /* CRDefines.h */,
-				007CF69215FEA4E700196E98 /* CRDefines.m */,
-				007CF69315FEA4E700196E98 /* CRRecordable.h */,
-				007CF69415FEA4E700196E98 /* CRRecorder.h */,
-				007CF69515FEA4E700196E98 /* CRRecorder.m */,
-				007CF69615FEA4E700196E98 /* CRScreenRecorder.h */,
-				007CF69715FEA4E700196E98 /* CRScreenRecorder.m */,
-				007CF69815FEA4E700196E98 /* CRUIButton.h */,
-				007CF69915FEA4E700196E98 /* CRUIButton.m */,
-				007CF69A15FEA4E700196E98 /* CRUIEventRecorder.h */,
-				007CF69B15FEA4E700196E98 /* CRUIEventRecorder.m */,
-				007CF69C15FEA4E700196E98 /* CRUIRecordOverlay.h */,
-				007CF69D15FEA4E700196E98 /* CRUIRecordOverlay.m */,
-				007CF69E15FEA4E700196E98 /* CRUITouch.h */,
-				007CF69F15FEA4E700196E98 /* CRUITouch.m */,
-				007CF6A015FEA4E700196E98 /* CRUIViewRecorder.h */,
-				007CF6A115FEA4E700196E98 /* CRUIViewRecorder.m */,
-				007CF6A215FEA4E700196E98 /* CRUIWindow.h */,
-				007CF6A315FEA4E700196E98 /* CRUIWindow.m */,
-				007CF6A415FEA4E700196E98 /* CRUtils.h */,
-				007CF6A515FEA4E700196E98 /* CRUtils.m */,
-				007CF6A615FEA4E700196E98 /* CRVideo.h */,
-				007CF6A715FEA4E700196E98 /* CRVideo.m */,
-				007CF6A815FEA4E700196E98 /* CRVideoWriter.h */,
-				007CF6A915FEA4E700196E98 /* CRVideoWriter.m */,
-				007CF68115FEA4A800196E98 /* Supporting Files */,
+				00F90B5015FFE93F00B5F4DF /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00F90B5215FFE93F00B5F4DF /* CaptureRecord */ = {
+			isa = PBXGroup;
+			children = (
+				00F90B5E15FFE9B200B5F4DF /* CaptureRecord.h */,
+				00F90B5F15FFE9B200B5F4DF /* CRCameraRecorder.h */,
+				00F90B6015FFE9B200B5F4DF /* CRCameraRecorder.m */,
+				00F90B6115FFE9B200B5F4DF /* CRCGUtils.h */,
+				00F90B6215FFE9B200B5F4DF /* CRCGUtils.m */,
+				00F90B6315FFE9B200B5F4DF /* CRDefines.h */,
+				00F90B6415FFE9B200B5F4DF /* CRDefines.m */,
+				00F90B6515FFE9B200B5F4DF /* CRRecordable.h */,
+				00F90B6615FFE9B200B5F4DF /* CRRecorder.h */,
+				00F90B6715FFE9B200B5F4DF /* CRRecorder.m */,
+				00F90B6815FFE9B200B5F4DF /* CRScreenRecorder.h */,
+				00F90B6915FFE9B200B5F4DF /* CRScreenRecorder.m */,
+				00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */,
+				00F90B6B15FFE9B200B5F4DF /* CRUIButton.m */,
+				00F90B6C15FFE9B200B5F4DF /* CRUIEventRecorder.h */,
+				00F90B6D15FFE9B200B5F4DF /* CRUIEventRecorder.m */,
+				00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */,
+				00F90B6F15FFE9B200B5F4DF /* CRUIRecordOverlay.m */,
+				00F90B7015FFE9B200B5F4DF /* CRUITouch.h */,
+				00F90B7115FFE9B200B5F4DF /* CRUITouch.m */,
+				00F90B7215FFE9B200B5F4DF /* CRUIViewRecorder.h */,
+				00F90B7315FFE9B200B5F4DF /* CRUIViewRecorder.m */,
+				00F90B7415FFE9B200B5F4DF /* CRUIWindow.h */,
+				00F90B7515FFE9B200B5F4DF /* CRUIWindow.m */,
+				00F90B7615FFE9B200B5F4DF /* CRUtils.h */,
+				00F90B7715FFE9B200B5F4DF /* CRUtils.m */,
+				00F90B7815FFE9B200B5F4DF /* CRVideo.h */,
+				00F90B7915FFE9B200B5F4DF /* CRVideo.m */,
+				00F90B7A15FFE9B200B5F4DF /* CRVideoWriter.h */,
+				00F90B7B15FFE9B200B5F4DF /* CRVideoWriter.m */,
+				00F90B5315FFE93F00B5F4DF /* Supporting Files */,
 			);
 			path = CaptureRecord;
 			sourceTree = "<group>";
 		};
-		007CF68115FEA4A800196E98 /* Supporting Files */ = {
+		00F90B5315FFE93F00B5F4DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				007CF68215FEA4A800196E98 /* CaptureRecord-Info.plist */,
-				007CF68315FEA4A800196E98 /* InfoPlist.strings */,
-				007CF68615FEA4A800196E98 /* CaptureRecord-Prefix.pch */,
+				00F90B5415FFE93F00B5F4DF /* CaptureRecord-Info.plist */,
+				00F90B5515FFE93F00B5F4DF /* InfoPlist.strings */,
+				00F90B5815FFE93F00B5F4DF /* CaptureRecord-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -155,43 +167,43 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		007CF67915FEA4A700196E98 /* Headers */ = {
+		00F90B4815FFE93F00B5F4DF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				007CF6AA15FEA4E700196E98 /* CaptureRecord.h in Headers */,
-				007CF6AB15FEA4E700196E98 /* CRCameraRecorder.h in Headers */,
-				007CF6AD15FEA4E700196E98 /* CRCGUtils.h in Headers */,
-				007CF6AF15FEA4E700196E98 /* CRDefines.h in Headers */,
-				007CF6B115FEA4E700196E98 /* CRRecordable.h in Headers */,
-				007CF6B215FEA4E700196E98 /* CRRecorder.h in Headers */,
-				007CF6B415FEA4E700196E98 /* CRScreenRecorder.h in Headers */,
-				007CF6B615FEA4E700196E98 /* CRUIButton.h in Headers */,
-				007CF6B815FEA4E700196E98 /* CRUIEventRecorder.h in Headers */,
-				007CF6BA15FEA4E700196E98 /* CRUIRecordOverlay.h in Headers */,
-				007CF6BC15FEA4E700196E98 /* CRUITouch.h in Headers */,
-				007CF6BE15FEA4E700196E98 /* CRUIViewRecorder.h in Headers */,
-				007CF6C015FEA4E700196E98 /* CRUIWindow.h in Headers */,
-				007CF6C215FEA4E700196E98 /* CRUtils.h in Headers */,
-				007CF6C415FEA4E700196E98 /* CRVideo.h in Headers */,
-				007CF6C615FEA4E700196E98 /* CRVideoWriter.h in Headers */,
+				00F90B7C15FFE9B200B5F4DF /* CaptureRecord.h in Headers */,
+				00F90B7D15FFE9B200B5F4DF /* CRCameraRecorder.h in Headers */,
+				00F90B7F15FFE9B200B5F4DF /* CRCGUtils.h in Headers */,
+				00F90B8115FFE9B200B5F4DF /* CRDefines.h in Headers */,
+				00F90B8315FFE9B200B5F4DF /* CRRecordable.h in Headers */,
+				00F90B8415FFE9B200B5F4DF /* CRRecorder.h in Headers */,
+				00F90B8615FFE9B200B5F4DF /* CRScreenRecorder.h in Headers */,
+				00F90B8815FFE9B200B5F4DF /* CRUIButton.h in Headers */,
+				00F90B8A15FFE9B200B5F4DF /* CRUIEventRecorder.h in Headers */,
+				00F90B8C15FFE9B200B5F4DF /* CRUIRecordOverlay.h in Headers */,
+				00F90B8E15FFE9B200B5F4DF /* CRUITouch.h in Headers */,
+				00F90B9015FFE9B200B5F4DF /* CRUIViewRecorder.h in Headers */,
+				00F90B9215FFE9B200B5F4DF /* CRUIWindow.h in Headers */,
+				00F90B9415FFE9B200B5F4DF /* CRUtils.h in Headers */,
+				00F90B9615FFE9B200B5F4DF /* CRVideo.h in Headers */,
+				00F90B9815FFE9B200B5F4DF /* CRVideoWriter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		007CF67D15FEA4A700196E98 /* CaptureRecord */ = {
+		00F90B4C15FFE93F00B5F4DF /* CaptureRecord */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 007CF68915FEA4A800196E98 /* Build configuration list for PBXNativeTarget "CaptureRecord" */;
+			buildConfigurationList = 00F90B5B15FFE93F00B5F4DF /* Build configuration list for PBXNativeTarget "CaptureRecord" */;
 			buildPhases = (
-				007CF67615FEA4A700196E98 /* ShellScript */,
-				007CF67715FEA4A700196E98 /* Sources */,
-				007CF67815FEA4A700196E98 /* Frameworks */,
-				007CF67915FEA4A700196E98 /* Headers */,
-				007CF67A15FEA4A700196E98 /* Resources */,
-				007CF67B15FEA4A700196E98 /* ShellScript */,
-				007CF67C15FEA4A700196E98 /* ShellScript */,
+				00F90B4515FFE93F00B5F4DF /* ShellScript */,
+				00F90B4615FFE93F00B5F4DF /* Sources */,
+				00F90B4715FFE93F00B5F4DF /* Frameworks */,
+				00F90B4815FFE93F00B5F4DF /* Headers */,
+				00F90B4915FFE93F00B5F4DF /* Resources */,
+				00F90B4A15FFE93F00B5F4DF /* ShellScript */,
+				00F90B4B15FFE93F00B5F4DF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -199,48 +211,48 @@
 			);
 			name = CaptureRecord;
 			productName = CaptureRecord;
-			productReference = 007CF67E15FEA4A700196E98 /* CaptureRecord.framework */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 00F90B4D15FFE93F00B5F4DF /* CaptureRecord.framework */;
+			productType = "com.apple.product-type.framework.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		007CF67115FEA4A700196E98 /* Project object */ = {
+		00F90B4015FFE93F00B5F4DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Miscellaneum LLC";
 			};
-			buildConfigurationList = 007CF67415FEA4A700196E98 /* Build configuration list for PBXProject "CaptureRecord" */;
+			buildConfigurationList = 00F90B4315FFE93F00B5F4DF /* Build configuration list for PBXProject "CaptureRecord" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 007CF66F15FEA4A700196E98;
-			productRefGroup = 007CF67F15FEA4A700196E98 /* Products */;
+			mainGroup = 00F90B3E15FFE93F00B5F4DF;
+			productRefGroup = 00F90B4E15FFE93F00B5F4DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				007CF67D15FEA4A700196E98 /* CaptureRecord */,
+				00F90B4C15FFE93F00B5F4DF /* CaptureRecord */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		007CF67A15FEA4A700196E98 /* Resources */ = {
+		00F90B4915FFE93F00B5F4DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				007CF68515FEA4A800196E98 /* InfoPlist.strings in Resources */,
+				00F90B5715FFE93F00B5F4DF /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		007CF67615FEA4A700196E98 /* ShellScript */ = {
+		00F90B4515FFE93F00B5F4DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,9 +263,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n\tUFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version  from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Clean other platform if needed\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n\techo \"Platform \\\"$UFW_SDK_PLATFORM\\\" was cleaned recently. Cleaning \\\"$UFW_OTHER_PLATFORM\\\" as well\"\n\techo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\n\txcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\nfi\n\n\n# Make sure we are building from fresh binaries\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\n";
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n\tUFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version  from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\nONLY_ACTIVE_PLATFORM=${ONLY_ACTIVE_PLATFORM:-$ONLY_ACTIVE_ARCH}\n\n# Short-circuit if all binaries are up to date\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n  ([[ \"${ONLY_ACTIVE_PLATFORM}\" == \"YES\" ]] || \\\n    ([[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n     [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n     [[ ! \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\n    )\n  )\nthen\n    exit 0\nfi\n\n\n# Clean other platform if needed\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ \"${ONLY_ACTIVE_PLATFORM}\" != \"YES\" ]]\nthen\n\techo \"Platform \\\"$UFW_SDK_PLATFORM\\\" was cleaned recently. Cleaning \\\"$UFW_OTHER_PLATFORM\\\" as well\"\n\techo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\n\txcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\nfi\n\n\n# Make sure we are building from fresh binaries\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\n\nif [[ \"${ONLY_ACTIVE_PLATFORM}\" != \"YES\" ]]\nthen\n    rm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n    rm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nfi\n";
 		};
-		007CF67B15FEA4A700196E98 /* ShellScript */ = {
+		00F90B4A15FFE93F00B5F4DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -266,7 +278,7 @@
 			shellPath = /bin/sh;
 			shellScript = "HEADERS_ROOT=$SRCROOT/$PRODUCT_NAME\nFRAMEWORK_HEADERS_DIR=\"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Versions/$FRAMEWORK_VERSION/Headers\"\n\n## only header files expected at this point\nPUBLIC_HEADERS=$(find $FRAMEWORK_HEADERS_DIR/. -not -type d 2> /dev/null | sed -e \"s@.*/@@g\")\n\nFIND_OPTS=\"\"\nfor PUBLIC_HEADER in $PUBLIC_HEADERS; do\n  if [ -n \"$FIND_OPTS\" ]; then\n    FIND_OPTS=\"$FIND_OPTS -o\"\n  fi\n  FIND_OPTS=\"$FIND_OPTS -name '$PUBLIC_HEADER'\"\ndone\n\nif [ -n \"$FIND_OPTS\" ]; then\n  for ORIG_HEADER in $(eval \"find $HEADERS_ROOT/. $FIND_OPTS\" 2> /dev/null | sed -e \"s@^$HEADERS_ROOT/./@@g\"); do\n    PUBLIC_HEADER=$(basename $ORIG_HEADER)\n    RELATIVE_PATH=$(dirname $ORIG_HEADER)\n    if [ -e $FRAMEWORK_HEADERS_DIR/$PUBLIC_HEADER ]; then\n      mkdir -p \"$FRAMEWORK_HEADERS_DIR/$RELATIVE_PATH\"\n      mv \"$FRAMEWORK_HEADERS_DIR/$PUBLIC_HEADER\" \"$FRAMEWORK_HEADERS_DIR/$RELATIVE_PATH/$PUBLIC_HEADER\"\n    fi\n  done\nfi\n";
 		};
-		007CF67C15FEA4A700196E98 /* ShellScript */ = {
+		00F90B4B15FFE93F00B5F4DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -277,39 +289,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Make sure the other platform gets built\n\necho \"Build other platform\"\n\necho xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n\n\n# Build the fat static library binary\n\necho \"Create universal static library\"\n\necho \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\necho mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nmv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n\n\n# Build framework structure\n\necho \"Build symlinks\"\n\necho ln -sfh A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\nln -sfh A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\necho ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\nln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\necho ln -sfh Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\nln -sfh Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\necho ln -sfh \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\nln -sfh \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\n\n\n# Link to binary for unit tests\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework\"\nln -sfh \"../${WRAPPER_NAME}/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework/.fake_fw_testing\"\n\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\n# Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n\necho \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n\necho rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\necho cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n";
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\nONLY_ACTIVE_PLATFORM=${ONLY_ACTIVE_PLATFORM:-$ONLY_ACTIVE_ARCH}\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\nif [ \"${ONLY_ACTIVE_PLATFORM}\" == \"YES\" ]\nthen\n    echo \"ONLY_ACTIVE_PLATFORM=${ONLY_ACTIVE_PLATFORM}: Skipping other platform build\"\nelse\n    # Make sure the other platform gets built\n    \n    echo \"Build other platform\"\n    \n    echo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n    xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n    \n    \n    # Build the fat static library binary\n    \n    echo \"Create universal static library\"\n    \n    echo \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n    \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n    \n    echo mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n    mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nfi\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\nif [ \"${ONLY_ACTIVE_PLATFORM}\" != \"YES\" ]\nthen\n    # Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n    \n    echo \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n    \n    echo rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n    rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n    echo cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n    cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		007CF67715FEA4A700196E98 /* Sources */ = {
+		00F90B4615FFE93F00B5F4DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				007CF6AC15FEA4E700196E98 /* CRCameraRecorder.m in Sources */,
-				007CF6AE15FEA4E700196E98 /* CRCGUtils.m in Sources */,
-				007CF6B015FEA4E700196E98 /* CRDefines.m in Sources */,
-				007CF6B315FEA4E700196E98 /* CRRecorder.m in Sources */,
-				007CF6B515FEA4E700196E98 /* CRScreenRecorder.m in Sources */,
-				007CF6B715FEA4E700196E98 /* CRUIButton.m in Sources */,
-				007CF6B915FEA4E700196E98 /* CRUIEventRecorder.m in Sources */,
-				007CF6BB15FEA4E700196E98 /* CRUIRecordOverlay.m in Sources */,
-				007CF6BD15FEA4E700196E98 /* CRUITouch.m in Sources */,
-				007CF6BF15FEA4E700196E98 /* CRUIViewRecorder.m in Sources */,
-				007CF6C115FEA4E700196E98 /* CRUIWindow.m in Sources */,
-				007CF6C315FEA4E700196E98 /* CRUtils.m in Sources */,
-				007CF6C515FEA4E700196E98 /* CRVideo.m in Sources */,
-				007CF6C715FEA4E700196E98 /* CRVideoWriter.m in Sources */,
+				00F90B7E15FFE9B200B5F4DF /* CRCameraRecorder.m in Sources */,
+				00F90B8015FFE9B200B5F4DF /* CRCGUtils.m in Sources */,
+				00F90B8215FFE9B200B5F4DF /* CRDefines.m in Sources */,
+				00F90B8515FFE9B200B5F4DF /* CRRecorder.m in Sources */,
+				00F90B8715FFE9B200B5F4DF /* CRScreenRecorder.m in Sources */,
+				00F90B8915FFE9B200B5F4DF /* CRUIButton.m in Sources */,
+				00F90B8B15FFE9B200B5F4DF /* CRUIEventRecorder.m in Sources */,
+				00F90B8D15FFE9B200B5F4DF /* CRUIRecordOverlay.m in Sources */,
+				00F90B8F15FFE9B200B5F4DF /* CRUITouch.m in Sources */,
+				00F90B9115FFE9B200B5F4DF /* CRUIViewRecorder.m in Sources */,
+				00F90B9315FFE9B200B5F4DF /* CRUIWindow.m in Sources */,
+				00F90B9515FFE9B200B5F4DF /* CRUtils.m in Sources */,
+				00F90B9715FFE9B200B5F4DF /* CRVideo.m in Sources */,
+				00F90B9915FFE9B200B5F4DF /* CRVideoWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		007CF68315FEA4A800196E98 /* InfoPlist.strings */ = {
+		00F90B5515FFE93F00B5F4DF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				007CF68415FEA4A800196E98 /* en */,
+				00F90B5615FFE93F00B5F4DF /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -317,7 +329,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		007CF68715FEA4A800196E98 /* Debug */ = {
+		00F90B5915FFE93F00B5F4DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -343,7 +355,7 @@
 			};
 			name = Debug;
 		};
-		007CF68815FEA4A800196E98 /* Release */ = {
+		00F90B5A15FFE93F00B5F4DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -363,54 +375,40 @@
 			};
 			name = Release;
 		};
-		007CF68A15FEA4A800196E98 /* Debug */ = {
+		00F90B5C15FFE93F00B5F4DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
-				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CaptureRecord/CaptureRecord-Prefix.pch";
 				INFOPLIST_FILE = "CaptureRecord/CaptureRecord-Info.plist";
-				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_object;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
 		};
-		007CF68B15FEA4A800196E98 /* Release */ = {
+		00F90B5D15FFE93F00B5F4DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
-				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CaptureRecord/CaptureRecord-Prefix.pch";
 				INFOPLIST_FILE = "CaptureRecord/CaptureRecord-Info.plist";
-				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_object;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -418,25 +416,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		007CF67415FEA4A700196E98 /* Build configuration list for PBXProject "CaptureRecord" */ = {
+		00F90B4315FFE93F00B5F4DF /* Build configuration list for PBXProject "CaptureRecord" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				007CF68715FEA4A800196E98 /* Debug */,
-				007CF68815FEA4A800196E98 /* Release */,
+				00F90B5915FFE93F00B5F4DF /* Debug */,
+				00F90B5A15FFE93F00B5F4DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		007CF68915FEA4A800196E98 /* Build configuration list for PBXNativeTarget "CaptureRecord" */ = {
+		00F90B5B15FFE93F00B5F4DF /* Build configuration list for PBXNativeTarget "CaptureRecord" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				007CF68A15FEA4A800196E98 /* Debug */,
-				007CF68B15FEA4A800196E98 /* Release */,
+				00F90B5C15FFE93F00B5F4DF /* Debug */,
+				00F90B5D15FFE93F00B5F4DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 007CF67115FEA4A700196E98 /* Project object */;
+	rootObject = 00F90B4015FFE93F00B5F4DF /* Project object */;
 }

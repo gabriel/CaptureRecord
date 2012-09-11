@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		005B766D15ED639700190A62 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005B766C15ED639600190A62 /* AssetsLibrary.framework */; };
 		007CF6F515FEA67900196E98 /* libYelpKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF6EC15FEA66900196E98 /* libYelpKit.a */; };
-		007CF7B415FEC68500196E98 /* CaptureRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF79B15FEC40900196E98 /* CaptureRecord.framework */; };
 		00A79A7915DC7916006D5BE7 /* CRTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A79A7815DC7916006D5BE7 /* CRTestView.m */; };
 		00A79A7B15DC81BE006D5BE7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A79A7A15DC81BE006D5BE7 /* MediaPlayer.framework */; };
 		00A79AE915DDA968006D5BE7 /* CRMoviePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A79AE815DDA968006D5BE7 /* CRMoviePlayerView.m */; };
@@ -25,6 +24,7 @@
 		00D94D6115DC2369008FDF75 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D94D5F15DC2369008FDF75 /* CoreVideo.framework */; };
 		00D94D6315DC2379008FDF75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D94D6215DC2379008FDF75 /* QuartzCore.framework */; };
 		00D94D6B15DC240B008FDF75 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00D94D6415DC238A008FDF75 /* MapKit.framework */; };
+		00F90BB215FFEB2900B5F4DF /* CaptureRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF79B15FEC40900196E98 /* CaptureRecord.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +56,11 @@
 			remoteGlobalIDString = 007CF67E15FEA4A700196E98;
 			remoteInfo = CaptureRecord;
 		};
-		007CF7B215FEC65F00196E98 /* PBXContainerItemProxy */ = {
+		00F90BB015FFEB2600B5F4DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 007CF79315FEC40900196E98 /* CaptureRecord.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 007CF67D15FEA4A700196E98;
+			remoteGlobalIDString = 00F90B4C15FFE93F00B5F4DF;
 			remoteInfo = CaptureRecord;
 		};
 /* End PBXContainerItemProxy section */
@@ -97,8 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F90BB215FFEB2900B5F4DF /* CaptureRecord.framework in Frameworks */,
 				007CF6F515FEA67900196E98 /* libYelpKit.a in Frameworks */,
-				007CF7B415FEC68500196E98 /* CaptureRecord.framework in Frameworks */,
 				005B766D15ED639700190A62 /* AssetsLibrary.framework in Frameworks */,
 				00A79A7B15DC81BE006D5BE7 /* MediaPlayer.framework in Frameworks */,
 				00D94D6B15DC240B008FDF75 /* MapKit.framework in Frameworks */,
@@ -226,7 +226,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				007CF7B315FEC65F00196E98 /* PBXTargetDependency */,
+				00F90BB115FFEB2600B5F4DF /* PBXTargetDependency */,
 				007CF6F415FEA67200196E98 /* PBXTargetDependency */,
 			);
 			name = Cap;
@@ -288,7 +288,7 @@
 		};
 		007CF79B15FEC40900196E98 /* CaptureRecord.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = wrapper.framework.static;
 			path = CaptureRecord.framework;
 			remoteRef = 007CF79A15FEC40900196E98 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -327,10 +327,10 @@
 			name = YelpKit;
 			targetProxy = 007CF6F315FEA67200196E98 /* PBXContainerItemProxy */;
 		};
-		007CF7B315FEC65F00196E98 /* PBXTargetDependency */ = {
+		00F90BB115FFEB2600B5F4DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CaptureRecord;
-			targetProxy = 007CF7B215FEC65F00196E98 /* PBXContainerItemProxy */;
+			targetProxy = 00F90BB015FFEB2600B5F4DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -413,10 +413,7 @@
 				GCC_PREFIX_HEADER = "Cap/Cap-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Cap/Cap-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					CaptureRecord,
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -430,10 +427,7 @@
 				GCC_PREFIX_HEADER = "Cap/Cap-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Cap/Cap-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					CaptureRecord,
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
