@@ -229,7 +229,19 @@ typedef enum {
 }
 
 - (void)_discard {
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Are you sure you want to discard the video?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Discard"];
+  [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 1) {
+    [self _discardConfirmed];
+  }
+}
+
+- (void)_discardConfirmed {
   [[CRRecorder sharedRecorder] discardVideo:nil];
+  [self _close];
 }
 
 - (void)_close {
