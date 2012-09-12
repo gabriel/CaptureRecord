@@ -115,7 +115,7 @@ typedef enum {
     y += 54;
   }
   
-  _recordBackground.frame = CGRectMake(70, 80, buttonWidth + 20, y);
+  _recordBackground.frame = CGRectMake(60, 120, buttonWidth + 20, y);
     
   x = 10;
   y = 10;
@@ -126,7 +126,7 @@ typedef enum {
   _discardButton.frame = CGRectMake(x, y, buttonWidth, 44);
   y += 54;
   
-  _saveBackground.frame = CGRectMake(70, 80, buttonWidth + 20, y);
+  _saveBackground.frame = CGRectMake(60, 120, buttonWidth + 20, y);
 }
 
 - (CRUIButton *)buttonWithTitle:(NSString *)title action:(SEL)action style:(CRUIButtonStyle)style {
@@ -229,7 +229,7 @@ typedef enum {
 }
 
 - (void)_discard {
-  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Are you sure you want to discard the video?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Discard"];
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Are you sure you want to discard the video?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Discard", nil];
   [alertView show];
 }
 

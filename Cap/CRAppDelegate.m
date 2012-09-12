@@ -34,6 +34,13 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Test" message:@"Test" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
   }];
+  
+  __weak id blockViewStack = _viewStack;
+  [self addActionWithTitle:@"Open" targetBlock:^() {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [blockViewStack pushView:[YKSUIView viewWithView:view] animated:YES];
+  }];
 
   [_viewStack setView:mainView duration:0 options:0];
   [self.window makeKeyAndVisible];

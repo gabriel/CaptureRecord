@@ -20,7 +20,7 @@
 
     if (!_recordables) _recordables = [NSMutableArray array];
     
-    if ((_options & CRRecorderOptionUserRecording) == CRRecorderOptionUserRecording) {
+    if ((_options & CRRecorderOptionUserCameraRecording) == CRRecorderOptionUserCameraRecording) {
 #if !TARGET_IPHONE_SIMULATOR
       _userRecorder = [[CRCameraRecorder alloc] init];
       _userRecorder.audioWriter = self;
@@ -76,7 +76,7 @@
   NSDictionary *videoCompressionProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                               [NSNumber numberWithDouble:1024.0 * 1024.0], AVVideoAverageBitRateKey,
                                               nil];
-  
+
   NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                  AVVideoCodecH264, AVVideoCodecKey,
                                  [NSNumber numberWithInt:_videoSize.width], AVVideoWidthKey,
@@ -98,47 +98,49 @@
   
   [_writer addInput:_writerInput];
   
-  // Add the audio input
-  AudioChannelLayout acl;
-  bzero(&acl, sizeof(acl));
-  acl.mChannelLayoutTag = kAudioChannelLayoutTag_Mono;
-    
-  /*
-  double preferredHardwareSampleRate = [[AVAudioSession sharedInstance] currentHardwareSampleRate];
-  NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
-                                       [NSNumber numberWithDouble:preferredHardwareSampleRate], AVSampleRateKey,
-                                       [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                       [NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,
-                                       [NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,
-                                       [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
-                                       [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,
-                                       [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
-                                       nil];
-   */
+  if ((_options & CRRecorderOptionUserAudioRecording) == CRRecorderOptionUserAudioRecording) {
+    // Add the audio input
+    AudioChannelLayout acl;
+    bzero(&acl, sizeof(acl));
+    acl.mChannelLayoutTag = kAudioChannelLayoutTag_Mono;
+      
+    /*
+    double preferredHardwareSampleRate = [[AVAudioSession sharedInstance] currentHardwareSampleRate];
+    NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [NSNumber numberWithInt:kAudioFormatLinearPCM], AVFormatIDKey,
+                                         [NSNumber numberWithDouble:preferredHardwareSampleRate], AVSampleRateKey,
+                                         [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                         [NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,
+                                         [NSNumber numberWithBool:NO], AVLinearPCMIsNonInterleaved,
+                                         [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                                         [NSNumber numberWithBool:NO], AVLinearPCMIsBigEndianKey,
+                                         [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
+                                         nil];
+     */
 
-  /*
-  NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       [NSNumber numberWithInt:kAudioFormatiLBC], AVFormatIDKey,
-                                       [NSNumber numberWithInt:12000], AVSampleRateKey,
-                                       [NSNumber numberWithInt:12000], AVEncoderBitRateKey,
-                                       [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                       [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
-                                       nil];
-  */
+    /*
+    NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [NSNumber numberWithInt:kAudioFormatiLBC], AVFormatIDKey,
+                                         [NSNumber numberWithInt:12000], AVSampleRateKey,
+                                         [NSNumber numberWithInt:12000], AVEncoderBitRateKey,
+                                         [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                         [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
+                                         nil];
+    */
 
-  NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       [NSNumber numberWithInt:kAudioFormatMPEG4AAC], AVFormatIDKey,
-                                       [NSNumber numberWithInt:12000], AVSampleRateKey,
-                                       [NSNumber numberWithInt:12000], AVEncoderBitRateKey,
-                                       //[NSNumber numberWithInt:AVAudioQualityLow], AVEncoderAudioQualityKey,
-                                       [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                       [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
-                                       nil];
+    NSDictionary *audioOutputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         [NSNumber numberWithInt:kAudioFormatMPEG4AAC], AVFormatIDKey,
+                                         [NSNumber numberWithInt:12000], AVSampleRateKey,
+                                         [NSNumber numberWithInt:12000], AVEncoderBitRateKey,
+                                         //[NSNumber numberWithInt:AVAudioQualityLow], AVEncoderAudioQualityKey,
+                                         [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
+                                         [NSData dataWithBytes:&acl length:sizeof(acl)], AVChannelLayoutKey,
+                                         nil];
 
-  _audioWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:audioOutputSettings];
-  _audioWriterInput.expectsMediaDataInRealTime = YES;
-  [_writer addInput:_audioWriterInput];
+    _audioWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:audioOutputSettings];
+    _audioWriterInput.expectsMediaDataInRealTime = YES;
+    [_writer addInput:_audioWriterInput];
+  }
   
   for (id<CRRecordable> recordable in _recordables) {
     if ([recordable respondsToSelector:@selector(start:)]) {

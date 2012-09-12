@@ -1,3 +1,0 @@
-Capture &amp; Record is a usability testing iOS SDK.
-
-View docs online: http://gabriel.github.com/Cap/

@@ -23,7 +23,7 @@
 
 - (id)init {
   if ((self = [super init])) {
-    _options = CRRecorderOptionUserRecording|CRRecorderOptionTouchRecording;
+    _options = CRRecorderOptionUserCameraRecording|CRRecorderOptionUserAudioRecording|CRRecorderOptionTouchRecording;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_onEvent:) name:CRUIEventNotification object:nil];
   }
   return self;
@@ -73,8 +73,7 @@
   CRScreenRecorder *viewRecoder = [[CRScreenRecorder alloc] init];
 #endif
     
-  CRRecorderOptions options = CRRecorderOptionUserRecording|CRRecorderOptionTouchRecording;
-  _videoWriter = [[CRVideoWriter alloc] initWithRecordables:[NSArray arrayWithObjects:viewRecoder, nil] options:options];
+  _videoWriter = [[CRVideoWriter alloc] initWithRecordables:[NSArray arrayWithObjects:viewRecoder, nil] options:_options];
   
   if (!self.registered) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_stopForUnregistered) object:nil];

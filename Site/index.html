@@ -18,6 +18,10 @@
       .sidebar-nav {
         padding: 9px 0;
       }
+      .logo {
+        font-size: 46px;
+        line-height: 52px;
+      }
       hr {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -68,16 +72,17 @@
     
     <div class="container">
       
-      <h1>Capture &amp; Record</h1>
+      <h1 class="logo">Capture &amp; Record</h1>
       <p class="lead">Usability testing iOS SDK.</p>
       <ul>
         <li>Capture screen activity.</li>
         <li>Record the tester's face (using the front facing camera).</li>
         <li>Record the tester's voice (using the microphone).</li>
         <li>Record user input and touch events.</li>
-        <li>Export video to your camera roll.</li>
+        <li>Export as a single video to your camera roll.</li>
       </ul>
-      <!-- <p><a class="btn btn-primary btn-large">Download &raquo;</a></p> -->
+      
+      <p><a class="btn btn-primary btn-large" href="download/CaptureRecord.zip">Download</a></p>
           
       <!--
       <h2 id="install_cocoapods">CocoaPods</h2>
@@ -88,7 +93,7 @@
       <h2 id="install_sdk">SDK Installation</h2>
       <p>Follow these steps in order to use the Capture Record iOS SDK within your own Xcode project as a statically linked framework.</p>
       <ol>
-        <li>Download the latest SDK binary release from the downloads and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
+        <li><a href="download/CaptureRecord.zip">Download</a> the latest SDK binary release from the downloads and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
         <li>Add the following libraries to your app target's <code>Link Binary With Libraries</code> build phase:
           <ul>
             <li><code>AssetsLibrary.framework</code></li>
@@ -107,27 +112,72 @@
           <pre>
 self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 </pre>
-        This allows the framework to record touch events.
+        <p>This allows the framework to record touch events.</p>
+
+        <p>If your window is defined in interface builder, you'll need to change the window to use a Custom Class <code>CRUIWindow</code></p>
+
         </li>
         <li>
           Register the framework. Otherwise you'll only be able to record for 30 seconds.
           <pre>
 [[CRRecorder sharedRecorder] registerWithName:@"NAME" code:@"REGISTRATION_CODE"];
 </pre>
-          While this is in beta, you can email <a href="mailto:gabrielh@gmail.com">gabrielh@gmail.com</a> to get a registration code.
+          While this is in limited beta, you can email <a href="mailto:gabrielh@gmail.com">gabrielh@gmail.com</a> to get a registration code.
         </li>
       </ol>
 
       <hr/>
-      <h2 id="api">API Overview</h2>
+      <h2 id="api">Getting Started</h2>
 
-      <h3 id="api_crrecorder">CRRecorder</h3>
-      <p>This is a test!</p>
+      <p>After installing, you can activate the Start Recording screen by tapping on the screen with <b>two</b> fingers <b>three</b> times.
+        <br/>
+        <img class="img-polaroid" src="img/cap-start.png"/>
+      </p>
 
-      <h3 id="help">Help</h3>
-      <p>This is a test!</p>
+      <p>To stop and save the recording, use the same gesture, tap on the screen with two fingers three times.
+        <br/>
+        <img class="img-polaroid" src="img/cap-stop.png"/>
+      </p>
 
-      <hr>
+      <p>Now you can choose to Save or Discard the video. If you choose Save, the recording is saved to your Camera Roll in the Photos app.
+        <br/>
+        <img class="img-polaroid" src="img/cap-save.png"/>
+      </p>
+
+
+      <h3>Recommended Devices</h3>
+
+      <p>The SDK is compatible with iOS 5, and runs best on most recent devices (iPhone 4S or later).</p>
+
+      <hr/>
+      <h2>API Overview</h2>
+
+      <p>You can start, stop, save and configure recordings manually. More details are available in the <a href="api/index.html">API documentation</a>.</p>
+
+      <h3>Album Name</h3>
+      <p>You can set the album name for where videos are saved in the Photos app.</p>
+      <pre>
+[[CRRecorder sharedRecorder] setAlbumName:@"Capture Record 2012-09-08"];
+</pre>
+
+      <h3>Recording Options</h3>
+
+      <p>You can configure basic recording options. The default is to record the user, audio and touches.</p>
+
+      <pre>
+[[CRRecorder sharedRecorder] setOptions:CRRecorderOptionUserCameraRecording | CRRecorderOptionUserAudioRecording | CRRecorderOptionTouchRecording];
+</pre>
+
+      <h3>Video</h3>
+
+      <p>Video and audio compression settings aren't currently configurable and video records at around 10 frames per second. Compression settings are coming soon.</p>
+
+      <hr/>
+
+      <h2 id="help">Help!</h2>
+      <p>This SDK is in a very early beta and many features are missing and documentation is lacking. Any feedback and questions are welcome at <a href="mailto:gabrielh@gmail.com">gabrielh@gmail.com</a>.</p>
+
+      <hr/>
 
       <footer>
         <p>&copy; Miscellaneum LLC 2012</p>

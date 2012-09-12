@@ -2,6 +2,7 @@
 docs:
 	rm -rf Documentation/output
 	appledoc -o Documentation/output -p CaptureRecord -v 0.1.0 -c "CaptureRecord" --company-id "me.rel" --warn-undocumented-object --warn-undocumented-member --warn-empty-description --warn-unknown-directive --warn-invalid-crossref --warn-missing-arg --no-repeat-first-par --keep-intermediate-files --ignore CaptureRecord/CRUIButton.h --docset-feed-url http://gabriel.github.com/Cap/publish/%DOCSETATOMFILENAME --docset-package-url http://gabriel.github.com/Cap/publish/%DOCSETPACKAGEFILENAME --index-desc Documentation/index.txt --verbose=3 --create-html --create-docset --publish-docset --exit-threshold 2 CaptureRecord/
+	cp -R Documentation/output/html/ Site/api/
 
 
 gh-pages: docs
