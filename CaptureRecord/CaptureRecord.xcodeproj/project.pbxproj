@@ -12,7 +12,7 @@
 		00F90B7C15FFE9B200B5F4DF /* CaptureRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B5E15FFE9B200B5F4DF /* CaptureRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B7D15FFE9B200B5F4DF /* CRCameraRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B5F15FFE9B200B5F4DF /* CRCameraRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B7E15FFE9B200B5F4DF /* CRCameraRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6015FFE9B200B5F4DF /* CRCameraRecorder.m */; };
-		00F90B7F15FFE9B200B5F4DF /* CRCGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6115FFE9B200B5F4DF /* CRCGUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B7F15FFE9B200B5F4DF /* CRCGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6115FFE9B200B5F4DF /* CRCGUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8015FFE9B200B5F4DF /* CRCGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6215FFE9B200B5F4DF /* CRCGUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		00F90B8115FFE9B200B5F4DF /* CRDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6315FFE9B200B5F4DF /* CRDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8215FFE9B200B5F4DF /* CRDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6415FFE9B200B5F4DF /* CRDefines.m */; };
@@ -21,11 +21,11 @@
 		00F90B8515FFE9B200B5F4DF /* CRRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6715FFE9B200B5F4DF /* CRRecorder.m */; };
 		00F90B8615FFE9B200B5F4DF /* CRScreenRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6815FFE9B200B5F4DF /* CRScreenRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8715FFE9B200B5F4DF /* CRScreenRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6915FFE9B200B5F4DF /* CRScreenRecorder.m */; };
-		00F90B8815FFE9B200B5F4DF /* CRUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B8815FFE9B200B5F4DF /* CRUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8915FFE9B200B5F4DF /* CRUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6B15FFE9B200B5F4DF /* CRUIButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		00F90B8A15FFE9B200B5F4DF /* CRUIEventRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6C15FFE9B200B5F4DF /* CRUIEventRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8B15FFE9B200B5F4DF /* CRUIEventRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6D15FFE9B200B5F4DF /* CRUIEventRecorder.m */; };
-		00F90B8C15FFE9B200B5F4DF /* CRUIRecordOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B8C15FFE9B200B5F4DF /* CRUIRecordOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8D15FFE9B200B5F4DF /* CRUIRecordOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6F15FFE9B200B5F4DF /* CRUIRecordOverlay.m */; };
 		00F90B8E15FFE9B200B5F4DF /* CRUITouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7015FFE9B200B5F4DF /* CRUITouch.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		00F90B8F15FFE9B200B5F4DF /* CRUITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7115FFE9B200B5F4DF /* CRUITouch.m */; };
@@ -33,7 +33,7 @@
 		00F90B9115FFE9B200B5F4DF /* CRUIViewRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7315FFE9B200B5F4DF /* CRUIViewRecorder.m */; };
 		00F90B9215FFE9B200B5F4DF /* CRUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7415FFE9B200B5F4DF /* CRUIWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B9315FFE9B200B5F4DF /* CRUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7515FFE9B200B5F4DF /* CRUIWindow.m */; };
-		00F90B9415FFE9B200B5F4DF /* CRUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7615FFE9B200B5F4DF /* CRUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		00F90B9415FFE9B200B5F4DF /* CRUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7615FFE9B200B5F4DF /* CRUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B9515FFE9B200B5F4DF /* CRUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7715FFE9B200B5F4DF /* CRUtils.m */; };
 		00F90B9615FFE9B200B5F4DF /* CRVideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7815FFE9B200B5F4DF /* CRVideo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B9715FFE9B200B5F4DF /* CRVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B7915FFE9B200B5F4DF /* CRVideo.m */; };
@@ -220,7 +220,7 @@
 		00F90B4015FFE93F00B5F4DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Miscellaneum LLC";
 			};
 			buildConfigurationList = 00F90B4315FFE93F00B5F4DF /* Build configuration list for PBXProject "CaptureRecord" */;
@@ -387,6 +387,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CaptureRecord/CaptureRecord-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "CaptureRecord/CaptureRecord-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -406,6 +407,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CaptureRecord/CaptureRecord-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "CaptureRecord/CaptureRecord-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

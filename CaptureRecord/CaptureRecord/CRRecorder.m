@@ -16,7 +16,7 @@
 #define UNREGISTERED_MAX_TIME_INTERVAL (30)
 
 @interface CRRecorder ()
-@property (assign) BOOL registered;
+@property (strong) NSString *registeredName;
 @end
 
 @implementation CRRecorder
@@ -43,14 +43,16 @@
 }
 
 - (BOOL)registerWithName:(NSString *)name code:(NSString *)code {
-  if (!name || [name isEqualToString:@""]) return NO;
+  if (!name || [name isEqualToString:@""]) return NO;  
 
   NSString *generated = [CRUtils cr_HMACSHA1WithMessage:name secret:@"$1$pdQG$7/HJofRWeRHSn9vctZR7C0"];
+  code = [code stringByReplacingOccurrencesOfString:@"=" withString:@""];
+  generated = [generated stringByReplacingOccurrencesOfString:@"=" withString:@""];
   if ([generated isEqualToString:code]) {
-    self.registered = YES;
+    self.registeredName = name;
   }
-  CRDebug(@"Generated: %@, Registered: %d", generated, self.registered);
-  return self.registered;
+  CRDebug(@"Generated: %@, Registered: %@", generated, self.registeredName);
+  return !!self.registeredName;
 }
 
 - (void)setOptions:(CRRecorderOptions)options {
@@ -62,7 +64,22 @@
   return (_videoWriter && _videoWriter.isRecording);
 }
 
+- (void)_alert:(NSString *)message {
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+  [alertView show];
+}
+
 - (BOOL)start:(NSError **)error {
+  if ([self.registeredName isEqualToString:@"Test"] && [[NSDate date] timeIntervalSince1970] > 1354052338) {
+    [self _alert:@"This beta version has expired"];
+    return NO;
+  }
+  
+  if ([[CRUtils machine] hasPrefix:@"iPhone5"] && [UIScreen mainScreen].bounds.size.height <= 480) {
+    [self _alert:@"Recording only works with full size app on iPhone 5."];
+    return NO;
+  }
+  
 #if TARGET_IPHONE_SIMULATOR
   UIWindow *window = [CRUIWindow window];
   if (!window) {
@@ -73,9 +90,9 @@
   CRScreenRecorder *viewRecoder = [[CRScreenRecorder alloc] init];
 #endif
     
-  _videoWriter = [[CRVideoWriter alloc] initWithRecordables:[NSArray arrayWithObjects:viewRecoder, nil] options:_options];
+  _videoWriter = [[CRVideoWriter alloc] initWithRecordable:viewRecoder options:_options];
   
-  if (!self.registered) {
+  if (!self.registeredName) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_stopForUnregistered) object:nil];
     [self performSelector:@selector(_stopForUnregistered) withObject:nil afterDelay:UNREGISTERED_MAX_TIME_INTERVAL];
   }

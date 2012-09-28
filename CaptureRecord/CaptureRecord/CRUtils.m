@@ -8,11 +8,20 @@
 
 #import "CRUtils.h"
 #include <CommonCrypto/CommonHMAC.h>
+#include <sys/utsname.h>
 
 #define IN
 #define OUT
 #define INOUT
 size_t cr_ybase64_encode(IN const void * from, IN const size_t from_len, OUT void * to, IN const size_t to_len);
+
+void CRDispatch(dispatch_block_t block) {
+  dispatch_async(dispatch_get_current_queue(), block);
+}
+
+void CRDispatchAfter(NSTimeInterval seconds, dispatch_block_t block) {
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, seconds * NSEC_PER_SEC), dispatch_get_current_queue(), block);
+}
 
 
 @implementation CRUtils
@@ -86,6 +95,12 @@ size_t cr_ybase64_encode(IN const void * from, IN const size_t from_len, OUT voi
    NSData *data = [(id<GHBase64Encoder>)base64Encoder encodeBytes:digest length:20];
    return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
    */
+}
+
++ (NSString *)machine {
+  struct utsname u;
+  if (uname(&u) >= 0) return [NSString stringWithUTF8String:u.machine];
+  return nil;
 }
 
 @end

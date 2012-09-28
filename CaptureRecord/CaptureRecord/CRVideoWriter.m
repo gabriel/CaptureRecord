@@ -13,12 +13,10 @@
 
 @implementation CRVideoWriter
 
-- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables options:(CRRecorderOptions)options {
+- (id)initWithRecordable:(id<CRRecordable>)recordable options:(CRRecorderOptions)options {
   if ((self = [super init])) {
-    _recordables = [recordables mutableCopy];
     _options = options;
-
-    if (!_recordables) _recordables = [NSMutableArray array];
+    _recordables = [NSMutableArray arrayWithObject:recordable];
     
     if ((_options & CRRecorderOptionUserCameraRecording) == CRRecorderOptionUserCameraRecording) {
 #if !TARGET_IPHONE_SIMULATOR
@@ -29,8 +27,8 @@
     }
 
     _videoSize = CGSizeZero;
-    for (id<CRRecordable> recordable in _recordables) {
-      CGSize size = [recordable size];
+    for (id<CRRecordable> r in _recordables) {
+      CGSize size = [r size];
       _videoSize.width += size.width;
       if (size.height > _videoSize.height) _videoSize.height = size.height;
     }
@@ -307,7 +305,7 @@
   if (event.type != UIEventTypeTouches) return NO;  
   
   CGSize touchSize = CR_TOUCH_SIZE;
-  for (UITouch *touch in [event allTouches]) {
+  for (UITouch *touch in [[event allTouches] copy]) {
     CGPoint p = [touch locationInView:touch.window];
     // Flip
     p.y = touch.window.frame.size.height - p.y;
@@ -327,6 +325,10 @@
     }
   }
   return YES;
+}
+
+- (id<CRRecordable>)recordable {
+  return [_recordables objectAtIndex:0];
 }
 
 - (BOOL)_renderTouch:(CRUITouch *)touch context:(CGContextRef)context {
@@ -391,7 +393,7 @@
 
   CGFloat width = 0;
   for (id<CRRecordable> recordable in _recordables) {
-    [recordable renderInContext:context];
+    [recordable renderInContext:context videoSize:_videoSize];
     width += [recordable size].width;
     CGContextTranslateCTM(context, [recordable size].width, 0);
   }

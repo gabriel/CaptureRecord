@@ -23,7 +23,7 @@
   return _size;
 }
 
-- (void)renderInContext:(CGContextRef)context {
+- (void)renderInContext:(CGContextRef)context videoSize:(CGSize)videoSize {
   CGContextSaveGState(context);
   CGContextConcatCTM(context, CGAffineTransformMake(1, 0, 0, -1, 0, _size.height));
   CGContextTranslateCTM(context, _view.center.x, _view.center.y);

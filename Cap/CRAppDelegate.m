@@ -24,9 +24,13 @@
   
   _viewStack = [[YKUIViewStack alloc] initWithParentView:self.window];
   
-  [[CRRecorder sharedRecorder] registerWithName:@"Gabriel" code:@"11qz3PGMUjRkRvSM7aeTtMkm/1k="];
+  //[[CRRecorder sharedRecorder] registerWithName:@"Gabriel" code:@"11qz3PGMUjRkRvSM7aeTtMkm/1k="];
+  //[[CRRecorder sharedRecorder] registerWithName:@"Postmates" code:@"CPLen624q8A2QwkIxqrZ7G2eofg="];
+  //[[CRRecorder sharedRecorder] registerWithName:@"Square" code:@"Qfz5Mt4rBzodTpSOVVpEc9Bmifw="];
+  [[CRRecorder sharedRecorder] registerWithName:@"Test" code:@"YUGa/nB/VYHwhjCL71CTM6Nojnc"];
   [[CRRecorder sharedRecorder] setAlbumName:@"Capture Record"];
-  
+  [[CRRecorder sharedRecorder] setOptions:0];
+    
   _tableView = [[YKTableView alloc] init];
   YKSUIView *mainView = [YKSUIView viewWithView:_tableView title:@"Test"];
   
@@ -37,8 +41,7 @@
   
   __weak id blockViewStack = _viewStack;
   [self addActionWithTitle:@"Open" targetBlock:^() {
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor whiteColor];
+    UIView *view = [[CRTestView alloc] init];
     [blockViewStack pushView:[YKSUIView viewWithView:view] animated:YES];
   }];
 

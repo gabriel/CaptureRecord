@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0030DC4C16164C0E0087F9E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0030DC4B16164C0E0087F9E5 /* Default-568h@2x.png */; };
 		005B766D15ED639700190A62 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005B766C15ED639600190A62 /* AssetsLibrary.framework */; };
 		007CF6F515FEA67900196E98 /* libYelpKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 007CF6EC15FEA66900196E98 /* libYelpKit.a */; };
 		00A79A7915DC7916006D5BE7 /* CRTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A79A7815DC7916006D5BE7 /* CRTestView.m */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0030DC4B16164C0E0087F9E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		005B766C15ED639600190A62 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		007CF6DC15FEA66900196E98 /* YelpKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YelpKit.xcodeproj; path = YelpKit/YelpKit.xcodeproj; sourceTree = "<group>"; };
 		007CF79315FEC40900196E98 /* CaptureRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CaptureRecord.xcodeproj; path = CaptureRecord/CaptureRecord.xcodeproj; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		00A79B0715DE12A2006D5BE7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0030DC4B16164C0E0087F9E5 /* Default-568h@2x.png */,
 				00A79B0815DE12A2006D5BE7 /* Images */,
 			);
 			name = Resources;
@@ -302,6 +305,7 @@
 			files = (
 				00D94C5C15DA038C008FDF75 /* InfoPlist.strings in Resources */,
 				00A79B0A15DE12A2006D5BE7 /* test2.png in Resources */,
+				0030DC4C16164C0E0087F9E5 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,12 +413,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cap/Cap-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Cap/Cap-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

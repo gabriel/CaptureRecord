@@ -22,8 +22,9 @@
 /*!
  Render the recordable in the specified context.
  @param context Context to render in
+ @param videoSize Video size
  */
-- (void)renderInContext:(CGContextRef)context;
+- (void)renderInContext:(CGContextRef)context videoSize:(CGSize)videoSize;
 
 /*!
  @result The size of the recordable. This size must be fixed and is required before any rendering begins.

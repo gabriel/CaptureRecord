@@ -16,6 +16,8 @@
   CRVideoWriter *_videoWriter;
   CRRecorderOptions _options;
   NSString *_albumName;
+  
+  NSString *_registeredName;
 }
 
 /*!

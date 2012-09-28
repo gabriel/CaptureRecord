@@ -52,10 +52,10 @@
 
 /*!
  Create video writer with recordables.
- @param recordables Recordables
+ @param recordable Recordable
  @param options Options
  */
-- (id)initWithRecordables:(NSArray */*of id<CRRecordable>*/)recordables options:(CRRecorderOptions)options;
+- (id)initWithRecordable:(id<CRRecordable>)recordable options:(CRRecorderOptions)options;
 
 /*!
  Start the video writer.

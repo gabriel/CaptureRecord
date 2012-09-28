@@ -29,13 +29,19 @@
   return self;
 }
 
-- (void)renderInContext:(CGContextRef)context {
+- (void)renderInContext:(CGContextRef)context videoSize:(CGSize)videoSize {
   if (!_CRGetScreenImage) return;
   CGImageRef (*CRGetScreenImage)() = _CRGetScreenImage;
   //NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
   CGImageRef image = CRGetScreenImage();
   //CRDebug(@"GetScreenImage took %0.3fs", [NSDate timeIntervalSinceReferenceDate] - start);
   //start = [NSDate timeIntervalSinceReferenceDate];
+  
+//  CGFloat imageWidth = CGImageGetWidth(image);
+//  CGFloat imageHeight = CGImageGetHeight(image);
+//  CRDebug(@"Image size: %0f,%0f", imageWidth, imageHeight);
+//  CGFloat y = videoSize.height - _size.height;
+  
   CGContextDrawImage(context, CGRectMake(0, 0, _size.width, _size.height), image);
   CGImageRelease(image);
   //CRDebug(@"CGContextDrawImage took %0.3fs", [NSDate timeIntervalSinceReferenceDate] - start);

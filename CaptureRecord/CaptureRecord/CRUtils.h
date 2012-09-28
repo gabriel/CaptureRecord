@@ -12,4 +12,8 @@
 + (NSString *)cr_temporaryFile:(NSString *)appendPath deleteIfExists:(BOOL)deleteIfExists error:(NSError **)error;
 + (NSError *)cr_errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)localizedDescription;
 + (NSString *)cr_HMACSHA1WithMessage:(NSString *)message secret:(NSString *)secret;
++ (NSString *)machine;
 @end
+
+void CRDispatch(dispatch_block_t block);
+void CRDispatchAfter(NSTimeInterval seconds, dispatch_block_t block);

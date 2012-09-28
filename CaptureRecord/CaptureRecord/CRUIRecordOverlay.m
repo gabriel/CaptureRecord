@@ -8,6 +8,7 @@
 
 #import "CRUIRecordOverlay.h"
 #import "CRRecorder.h"
+#import "CRUtils.h"
 
 typedef enum {
   CRUIButtonStyleDefault = 1,
@@ -22,7 +23,7 @@ typedef enum {
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     self.opaque = NO;
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     
     //
     // Record view
@@ -203,7 +204,7 @@ typedef enum {
 - (void)_start {
   if (![[CRRecorder sharedRecorder] isRecording]) {
     [[CRRecorder sharedRecorder] start:nil];
-    [self _close];
+    [self _close:NO];
   }
 }
 
@@ -211,7 +212,7 @@ typedef enum {
   if ([[CRRecorder sharedRecorder] isRecording]) {
     [[CRRecorder sharedRecorder] stop:nil];
   } else {
-    [self _close];
+    [self _close:NO];
   }
 }
 
@@ -241,11 +242,21 @@ typedef enum {
 
 - (void)_discardConfirmed {
   [[CRRecorder sharedRecorder] discardVideo:nil];
-  [self _close];
+  [self _close:NO];
 }
 
 - (void)_close {
-  self.hidden = YES;
+  [self _close:NO];
+}
+
+- (void)_close:(BOOL)delayed {
+  if (delayed) {
+    CRDispatchAfter(0.1, ^(){
+      self.hidden = YES;
+    });
+  } else {
+    self.hidden = YES;
+  }    
 }
 
 - (void)_updateForVideoNotification:(NSNotification *)notification {
@@ -284,11 +295,11 @@ typedef enum {
       break;
     case CRVideoStatusSaved:
       [self _reset];
-      [self _close];
+      [self _close:NO];
       break;
     case CRVideoStatusDiscarded:
       [self _reset];
-      [self _close];
+      [self _close:NO];
       break;
   }
   [self setNeedsDisplay];

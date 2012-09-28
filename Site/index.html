@@ -76,14 +76,14 @@
       <p class="lead">Usability testing iOS SDK.</p>
       <ul>
         <li>Capture screen activity.</li>
-        <li>Record the tester's face (using the front facing camera).</li>
-        <li>Record the tester's voice (using the microphone).</li>
+        <li>Record the tester's face (using the device's front facing camera).</li>
+        <li>Record the tester's voice (using the device's microphone).</li>
         <li>Record user input and touch events.</li>
         <li>Export as a single video to your camera roll.</li>
       </ul>
       
-      <p><a class="btn btn-primary btn-large" href="download/CaptureRecord.zip">Download</a></p>
-          
+      <p><a class="btn btn-primary btn-large" href="download/CaptureRecord-20120928.zip">Download</a></p>
+
       <!--
       <h2 id="install_cocoapods">CocoaPods</h2>
       <p>Follow these steps in order to use the Capture Record iOS SDK within your own Xcode project using CocoaPods.</p>
@@ -93,7 +93,7 @@
       <h2 id="install_sdk">SDK Installation</h2>
       <p>Follow these steps in order to use the Capture Record iOS SDK within your own Xcode project as a statically linked framework.</p>
       <ol>
-        <li><a href="download/CaptureRecord.zip">Download</a> the latest SDK binary release from the downloads and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
+        <li>Download</a> the latest SDK release and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
         <li>Add the following libraries to your app target's <code>Link Binary With Libraries</code> build phase:
           <ul>
             <li><code>AssetsLibrary.framework</code></li>
@@ -118,23 +118,26 @@ self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
         </li>
         <li>
-          Register the framework. Otherwise you'll only be able to record for 30 seconds.
+          Register the framework, otherwise you'll only be able to record for 30 seconds.<br/>
+          While in beta you can use this test registration code which expires on Nov 27, 2012.<br/>
           <pre>
-[[CRRecorder sharedRecorder] registerWithName:@"NAME" code:@"REGISTRATION_CODE"];
+[[CRRecorder sharedRecorder] registerWithName:@"Test" code:@"YUGa/nB/VYHwhjCL71CTM6Nojnc"];
 </pre>
-          While this is in limited beta, you can email <a href="mailto:gabrielh@gmail.com">gabrielh@gmail.com</a> to get a registration code.
+          You can email <a href="mailto:gabrielh@gmail.com">gabrielh@...</a> to get a registration code that doesn't expire.
         </li>
       </ol>
 
       <hr/>
       <h2 id="api">Getting Started</h2>
 
-      <p>After installing, you can activate the Start Recording screen by tapping on the screen with <b>two</b> fingers <b>three</b> times.
+      <p class="text-warning">WARNING: If using an iPhone 5, make sure your app supports full screen height (with Default-568h.png).</p>
+
+      <p>After installing, you can activate the Start Recording screen by tapping on the screen with <b>two</b> fingers <b>three</b> times. You'll want to tap on a part of the screen which doesn't handle touches such as the navigation bar.
         <br/>
         <img class="img-polaroid" src="img/cap-start.png"/>
       </p>
 
-      <p>To stop and save the recording, use the same gesture, tap on the screen with two fingers three times.
+      <p>To stop and save the recording, use the same gesture, tap on the screen with <b>two</b> fingers <b>three</b> times.
         <br/>
         <img class="img-polaroid" src="img/cap-stop.png"/>
       </p>
@@ -170,7 +173,7 @@ self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
       <h3>Video</h3>
 
-      <p>Video and audio compression settings aren't currently configurable and video records at around 10 frames per second. Compression settings are coming soon.</p>
+      <p>Video and audio compression settings aren't currently configurable. Compression settings are coming soon.</p>
 
       <hr/>
 

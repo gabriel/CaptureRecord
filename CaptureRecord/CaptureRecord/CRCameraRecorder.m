@@ -132,7 +132,7 @@
   return YES;
 }
 
-- (void)renderInContext:(CGContextRef)context {
+- (void)renderInContext:(CGContextRef)context videoSize:(CGSize)videoSize {
   if (_data == NULL) {
     // For testing
     //UIImage *image = [UIImage imageNamed:@"test2.png"];
