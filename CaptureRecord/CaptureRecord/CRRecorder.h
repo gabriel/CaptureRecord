@@ -22,7 +22,7 @@
  The album name for the camera roll, where videos are saved. 
  Defaults to nil, the default Camera Roll.
  */
-@property (readwrite) NSString *albumName;
+@property (strong) NSString *albumName;
 
 /*!
  @result Recorder.
