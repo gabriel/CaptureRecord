@@ -23,8 +23,6 @@
 		00F90B8715FFE9B200B5F4DF /* CRScreenRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6915FFE9B200B5F4DF /* CRScreenRecorder.m */; };
 		00F90B8815FFE9B200B5F4DF /* CRUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8915FFE9B200B5F4DF /* CRUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6B15FFE9B200B5F4DF /* CRUIButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		00F90B8A15FFE9B200B5F4DF /* CRUIEventRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6C15FFE9B200B5F4DF /* CRUIEventRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00F90B8B15FFE9B200B5F4DF /* CRUIEventRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6D15FFE9B200B5F4DF /* CRUIEventRecorder.m */; };
 		00F90B8C15FFE9B200B5F4DF /* CRUIRecordOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00F90B8D15FFE9B200B5F4DF /* CRUIRecordOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F90B6F15FFE9B200B5F4DF /* CRUIRecordOverlay.m */; };
 		00F90B8E15FFE9B200B5F4DF /* CRUITouch.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B7015FFE9B200B5F4DF /* CRUITouch.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -61,8 +59,6 @@
 		00F90B6915FFE9B200B5F4DF /* CRScreenRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRScreenRecorder.m; sourceTree = "<group>"; };
 		00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIButton.h; sourceTree = "<group>"; };
 		00F90B6B15FFE9B200B5F4DF /* CRUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIButton.m; sourceTree = "<group>"; };
-		00F90B6C15FFE9B200B5F4DF /* CRUIEventRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIEventRecorder.h; sourceTree = "<group>"; };
-		00F90B6D15FFE9B200B5F4DF /* CRUIEventRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIEventRecorder.m; sourceTree = "<group>"; };
 		00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUIRecordOverlay.h; sourceTree = "<group>"; };
 		00F90B6F15FFE9B200B5F4DF /* CRUIRecordOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRUIRecordOverlay.m; sourceTree = "<group>"; };
 		00F90B7015FFE9B200B5F4DF /* CRUITouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRUITouch.h; sourceTree = "<group>"; };
@@ -133,8 +129,6 @@
 				00F90B6915FFE9B200B5F4DF /* CRScreenRecorder.m */,
 				00F90B6A15FFE9B200B5F4DF /* CRUIButton.h */,
 				00F90B6B15FFE9B200B5F4DF /* CRUIButton.m */,
-				00F90B6C15FFE9B200B5F4DF /* CRUIEventRecorder.h */,
-				00F90B6D15FFE9B200B5F4DF /* CRUIEventRecorder.m */,
 				00F90B6E15FFE9B200B5F4DF /* CRUIRecordOverlay.h */,
 				00F90B6F15FFE9B200B5F4DF /* CRUIRecordOverlay.m */,
 				00F90B7015FFE9B200B5F4DF /* CRUITouch.h */,
@@ -179,7 +173,6 @@
 				00F90B8415FFE9B200B5F4DF /* CRRecorder.h in Headers */,
 				00F90B8615FFE9B200B5F4DF /* CRScreenRecorder.h in Headers */,
 				00F90B8815FFE9B200B5F4DF /* CRUIButton.h in Headers */,
-				00F90B8A15FFE9B200B5F4DF /* CRUIEventRecorder.h in Headers */,
 				00F90B8C15FFE9B200B5F4DF /* CRUIRecordOverlay.h in Headers */,
 				00F90B8E15FFE9B200B5F4DF /* CRUITouch.h in Headers */,
 				00F90B9015FFE9B200B5F4DF /* CRUIViewRecorder.h in Headers */,
@@ -304,7 +297,6 @@
 				00F90B8515FFE9B200B5F4DF /* CRRecorder.m in Sources */,
 				00F90B8715FFE9B200B5F4DF /* CRScreenRecorder.m in Sources */,
 				00F90B8915FFE9B200B5F4DF /* CRUIButton.m in Sources */,
-				00F90B8B15FFE9B200B5F4DF /* CRUIEventRecorder.m in Sources */,
 				00F90B8D15FFE9B200B5F4DF /* CRUIRecordOverlay.m in Sources */,
 				00F90B8F15FFE9B200B5F4DF /* CRUITouch.m in Sources */,
 				00F90B9115FFE9B200B5F4DF /* CRUIViewRecorder.m in Sources */,

@@ -16,8 +16,6 @@
   CRVideoWriter *_videoWriter;
   CRRecorderOptions _options;
   NSString *_albumName;
-  
-  NSString *_registeredName;
 }
 
 /*!
@@ -56,14 +54,6 @@
  @exception CRException If recording, an exception is thrown.
  */
 - (void)setOptions:(CRRecorderOptions)options;
-
-/*!
- Register the SDK.
- @param name Name
- @param code Code
- @result YES if registered
- */
-- (BOOL)registerWithName:(NSString *)name code:(NSString *)code;
 
 /*!
  Save the video to the camera roll.

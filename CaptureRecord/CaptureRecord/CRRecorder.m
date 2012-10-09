@@ -13,12 +13,6 @@
 #import "CRUtils.h"
 #import "CRUIWindow.h"
 
-#define UNREGISTERED_MAX_TIME_INTERVAL (30)
-
-@interface CRRecorder ()
-@property (strong) NSString *registeredName;
-@end
-
 @implementation CRRecorder
 
 - (id)init {
@@ -42,19 +36,6 @@
   return sharedInstance;
 }
 
-- (BOOL)registerWithName:(NSString *)name code:(NSString *)code {
-  if (!name || [name isEqualToString:@""]) return NO;  
-
-  NSString *generated = [CRUtils cr_HMACSHA1WithMessage:name secret:@"$1$pdQG$7/HJofRWeRHSn9vctZR7C0"];
-  code = [code stringByReplacingOccurrencesOfString:@"=" withString:@""];
-  generated = [generated stringByReplacingOccurrencesOfString:@"=" withString:@""];
-  if ([generated isEqualToString:code]) {
-    self.registeredName = name;
-  }
-  CRDebug(@"Generated: %@, Registered: %@", generated, self.registeredName);
-  return !!self.registeredName;
-}
-
 - (void)setOptions:(CRRecorderOptions)options {
   if (self.isRecording) [NSException raise:CRException format:@"You can't set recording options while recording is in progress."];
   _options = options;
@@ -69,12 +50,7 @@
   [alertView show];
 }
 
-- (BOOL)start:(NSError **)error {
-  if ([self.registeredName isEqualToString:@"Test"] && [[NSDate date] timeIntervalSince1970] > 1354052338) {
-    [self _alert:@"This beta version has expired"];
-    return NO;
-  }
-  
+- (BOOL)start:(NSError **)error {  
   if ([[CRUtils machine] hasPrefix:@"iPhone5"] && [UIScreen mainScreen].bounds.size.height <= 480) {
     [self _alert:@"Recording only works with full size app on iPhone 5."];
     return NO;
@@ -91,12 +67,7 @@
 #endif
     
   _videoWriter = [[CRVideoWriter alloc] initWithRecordable:viewRecoder options:_options];
-  
-  if (!self.registeredName) {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_stopForUnregistered) object:nil];
-    [self performSelector:@selector(_stopForUnregistered) withObject:nil afterDelay:UNREGISTERED_MAX_TIME_INTERVAL];
-  }
-  
+    
   if ([_videoWriter start:error]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:CRRecorderDidStartNotification object:self];
     return YES;

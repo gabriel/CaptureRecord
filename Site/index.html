@@ -3,10 +3,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Capture &amp; Record iOS SDK</title>
+    <title>CaptureRecord: User &amp; Screen Recording iOS SDK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Le styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -72,17 +73,19 @@
     
     <div class="container">
       
-      <h1 class="logo">Capture &amp; Record</h1>
-      <p class="lead">Usability testing iOS SDK.</p>
+      <h1 class="logo">CaptureRecord</h1>
+      <p class="lead">User+Screen Recording iOS SDK</p>
       <ul>
         <li>Capture screen activity.</li>
         <li>Record the tester's face (using the device's front facing camera).</li>
         <li>Record the tester's voice (using the device's microphone).</li>
         <li>Record user input and touch events.</li>
         <li>Export as a single video to your camera roll.</li>
+        <li>Useful for basic usability testing.</li>
       </ul>
       
-      <p><a class="btn btn-primary btn-large" href="download/CaptureRecord-20120928.zip">Download</a></p>
+      <p><a class="btn btn-primary btn-large" href="http://bit.ly/SA4cn7">Download</a></p>
+      <p>Version: 10/09/2012</p>
 
       <!--
       <h2 id="install_cocoapods">CocoaPods</h2>
@@ -90,7 +93,7 @@
       -->
 
       <hr/>
-      <h2 id="install_sdk">SDK Installation</h2>
+      <h2>Install</h2>
       <p>Follow these steps in order to use the Capture Record iOS SDK within your own Xcode project as a statically linked framework.</p>
       <ol>
         <li>Download</a> the latest SDK release and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
@@ -117,20 +120,36 @@ self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         <p>If your window is defined in interface builder, you'll need to change the window to use a Custom Class <code>CRUIWindow</code></p>
 
         </li>
-        <li>
-          Register the framework, otherwise you'll only be able to record for 30 seconds.<br/>
-          While in beta you can use this test registration code which expires on Nov 27, 2012.<br/>
-          <pre>
-[[CRRecorder sharedRecorder] registerWithName:@"Test" code:@"YUGa/nB/VYHwhjCL71CTM6Nojnc"];
-</pre>
-          You can email <a href="mailto:gabrielh@gmail.com">gabrielh@...</a> to get a registration code that doesn't expire.
-        </li>
       </ol>
 
       <hr/>
-      <h2 id="api">Getting Started</h2>
+      <h2>Source</h2>
+      <p>The project source is available on github, under a GPL license. If you need a commercial license contact <a href="mailto:gabrielh@gmail.com">gabrielh@gmail.com</a>.</p>
 
-      <p class="text-warning">WARNING: If using an iPhone 5, make sure your app supports full screen height (with Default-568h.png).</p>
+      <p>Please donate if you find this project useful.</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <input type="hidden" name="cmd" value="_donations">
+      <input type="hidden" name="business" value="gabrielh@gmail.com">
+      <input type="hidden" name="lc" value="US">
+      <input type="hidden" name="item_name" value="Gabriel Handford">
+      <input type="hidden" name="no_note" value="0">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHostedGuest">
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+      </form>
+
+      <hr/>
+      <h2>What does the video look like?</h2>
+      <p>The SDK generates a video, saved to your camera roll. Here is a <a href="mov/crdemo_orig.mov">sample video</a>.</p>
+      
+      <video id="sampleMovie" width="480" height="432" preload controls>
+        <source src="mov/crdemo.mov" />
+      </video>
+      <p>This video was modified to run in browser. The original is <a href="mov/crdemo_orig.mov">here</a>.</p>
+
+      <hr/>
+      <h2>Getting Started</h2>
 
       <p>After installing, you can activate the Start Recording screen by tapping on the screen with <b>two</b> fingers <b>three</b> times. You'll want to tap on a part of the screen which doesn't handle touches such as the navigation bar.
         <br/>
@@ -147,10 +166,11 @@ self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         <img class="img-polaroid" src="img/cap-save.png"/>
       </p>
 
+      <p class="text-warning">If using an iPhone 5, make sure your app supports full screen height (with Default-568h.png).</p>
 
       <h3>Recommended Devices</h3>
 
-      <p>The SDK is compatible with iOS 5, and runs best on most recent devices (iPhone 4S or later).</p>
+      <p>The SDK is compatible with iOS 5 and above, and runs best on most recent devices (iPhone 4S or later).</p>
 
       <hr/>
       <h2>API Overview</h2>
@@ -177,21 +197,25 @@ self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
       <hr/>
 
-      <h2 id="help">Help!</h2>
-      <p>This SDK is in a very early beta and many features are missing and documentation is lacking. Any feedback and questions are welcome at <a href="mailto:gabrielh@gmail.com">gabrielh@gmail.com</a>.</p>
-
-      <hr/>
-
-      <footer>
-        <p>&copy; Miscellaneum LLC 2012</p>
-      </footer>
-
     </div>
 
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1286493-11']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
   </body>
 </html>

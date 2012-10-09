@@ -155,6 +155,7 @@
     success = [[NSFileManager defaultManager] removeItemAtPath:filePath error:error];
   }
   self.recordingFileURL = nil;
+  [self setStatus:CRVideoStatusDiscarded];
   return success;
 }
 
