@@ -887,13 +887,13 @@ CGRect CRCGRectScaleFromCenter(CGRect rect, CGFloat scale) {
 // Linear gradient function based on code by Ray Wenderlich
 // http://www.raywenderlich.com/2033/core-graphics-101-lines-rectangles-and-gradients
 void CRCGContextDrawLinearGradientWithColors(CGContextRef context, CGRect rect, NSArray */*of CGColorRef*/colors, CGFloat *locations) {
-  CGColorSpaceRef startColorSpace = CGColorGetColorSpace((CGColorRef)[colors objectAtIndex:0]);
+  CGColorSpaceRef startColorSpace = CGColorGetColorSpace((__bridge CGColorRef)[colors objectAtIndex:0]);
   for (NSInteger i = 1; i < [colors count]; i++) {
-    CGColorSpaceRef colorSpace = CGColorGetColorSpace((CGColorRef)[colors objectAtIndex:i]);
+    CGColorSpaceRef colorSpace = CGColorGetColorSpace((__bridge CGColorRef)[colors objectAtIndex:i]);
     if (colorSpace != startColorSpace) return;
   }
 
-  CGGradientRef gradient = CGGradientCreateWithColors(startColorSpace, (CFArrayRef)colors, locations);
+  CGGradientRef gradient = CGGradientCreateWithColors(startColorSpace, (__bridge CFArrayRef)colors, locations);
 
   CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
   CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
@@ -908,7 +908,7 @@ void CRCGContextDrawLinearGradientWithColors(CGContextRef context, CGRect rect, 
 }
 
 void CRCGContextDrawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef  endColor) {
-  NSArray *colors = [NSArray arrayWithObjects:(id)startColor, (id)endColor, nil];
+  NSArray *colors = [NSArray arrayWithObjects:(__bridge id)startColor, (__bridge id)endColor, nil];
   CGFloat locations[] = { 0.0, 1.0 };
   CRCGContextDrawLinearGradientWithColors(context, rect, colors, locations);
 }

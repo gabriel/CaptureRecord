@@ -29,8 +29,8 @@
   _disabledShadingType = CRUIShadingTypeUnknown;
   _margin = UIEdgeInsetsZero;
   _disabledAlpha = 1.0;
-  _titleColor = [[UIColor blackColor] retain];
-  _titleFont = [[UIFont boldSystemFontOfSize:14.0] retain];
+  _titleColor = [UIColor blackColor];
+  _titleFont = [UIFont boldSystemFontOfSize:14.0];
   _titleShadowOffset = CGSizeZero;
   self.accessibilityTraits |= UIAccessibilityTraitButton;
 }
@@ -62,52 +62,8 @@
   return self;
 }
 
-- (void)dealloc {
-  [_title release];
-  [_titleFont release];
-  [_titleColor release];
-  [_color release];
-  [_color2 release];
-  [_color3 release];
-  [_color4 release];
-  [_highlightedTitleColor release];
-  [_highlightedColor release];
-  [_highlightedColor2 release];
-  [_highlightedBorderColor release];
-  [_highlightedBorderShadowColor release];
-  [_highlightedIconImage release];
-  [_highlightedTitleShadowColor release];
-  [_disabledColor2 release];
-  [_disabledTitleColor release];
-  [_disabledColor release];
-  [_disabledIconImage release];
-  [_disabledBorderColor release];
-  [_disabledTitleShadowColor release];
-  [_borderColor release];
-  [_borderShadowColor release];
-  [_selectedColor release];
-  [_selectedColor2 release];
-  [_selectedBorderShadowColor release];
-  [_selectedIconImage release];
-  [_selectedTitleColor release];
-  [_selectedTitleShadowColor release];
-  [_titleShadowColor release];
-  [_iconImageView release];
-  [_accessoryImage release];
-  [_highlightedAccessoryImage release];
-  [_image release];
-  [_highlightedImage release];
-  [_disabledImage release];
-  [_secondaryTitle release];
-  [_secondaryTitleColor release];
-  [_secondaryTitleFont release];
-  [_abbreviatedTitle release];
-  [_iconShadowColor release];
-  [super dealloc];
-}
-
 + (CRUIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title {
-  return [[[[self class] alloc] initWithFrame:frame title:title] autorelease];
+  return [[[self class] alloc] initWithFrame:frame title:title];
 }
 
 + (CRUIButton *)buttonWithTitle:(NSString *)title target:(id)target action:(SEL)action {
@@ -115,7 +71,7 @@
 }
 
 + (CRUIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title target:(id)target action:(SEL)action {
-  return [[[[self class] alloc] initWithFrame:frame title:title target:target action:action] autorelease];
+  return [[[self class] alloc] initWithFrame:frame title:title target:target action:action];
 }
 
 - (CGSize)_sizeForTitle:(NSString *)title constrainedToSize:(CGSize)constrainedToSize {
@@ -267,22 +223,16 @@
 }
 
 - (void)setTitleFont:(UIFont *)titleFont {
-  [titleFont retain];
-  [_titleFont release];
   _titleFont = titleFont;
   [self didChangeValueForKey:@"titleFont"];
 }
 
 - (void)setTitle:(NSString *)title {
-  [title retain];
-  [_title release];
   _title = title;
   [self didChangeValueForKey:@"title"];
 }
 
 - (void)setSecondaryTitle:(NSString *)secondaryTitle {
-  [secondaryTitle retain];
-  [_secondaryTitle release];
   _secondaryTitle = secondaryTitle;
   [self didChangeValueForKey:@"secondaryTitle"];
 }
@@ -293,8 +243,6 @@
 }
 
 - (void)setColor:(UIColor *)color {
-  [color retain];
-  [_color release];
   _color = color;
   // Set shading type to none if a color is set
   if (_shadingType == CRUIShadingTypeUnknown) {
@@ -323,7 +271,7 @@
 }
 
 + (CRUIButton *)button {
-  return [[[CRUIButton alloc] initWithFrame:CGRectZero] autorelease];
+  return [[CRUIButton alloc] init];
 }
 
 - (void)sizeToFitWithMinimumSize:(CGSize)minSize {
@@ -346,7 +294,6 @@
 }
 
 - (void)setIconImage:(UIImage *)iconImage {
-  [_iconImageView release];
   _iconImageView = [[UIImageView alloc] initWithImage:iconImage];
 }
 
