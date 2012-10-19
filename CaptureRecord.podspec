@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "CaptureRecord"
   s.version      = "0.2.2"
-  s.summary      = "User+Screen Recording iOS SDK"
+  s.summary      = "User + Screen Recording iOS SDK."
   s.description  = <<-DESC
       Allows you to capture the screen, record the tester's face (using the device's front facing camera), record the tester's voice (using the device's microphone), record user input and touch events, and export as a single video to your camera roll. Its intended to be used to perform basic usability testing.
                     DESC
