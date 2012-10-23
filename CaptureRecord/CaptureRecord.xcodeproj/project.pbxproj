@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0004914F16373E700083A8D0 /* License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0004914E16373E700083A8D0 /* License.pdf */; };
 		00F90B5115FFE93F00B5F4DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00F90B5015FFE93F00B5F4DF /* Foundation.framework */; };
 		00F90B5715FFE93F00B5F4DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00F90B5515FFE93F00B5F4DF /* InfoPlist.strings */; };
 		00F90B7C15FFE9B200B5F4DF /* CaptureRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F90B5E15FFE9B200B5F4DF /* CaptureRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0004914E16373E700083A8D0 /* License.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = License.pdf; sourceTree = "<group>"; };
 		00F90B4D15FFE93F00B5F4DF /* CaptureRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = CaptureRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00F90B5015FFE93F00B5F4DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00F90B5415FFE93F00B5F4DF /* CaptureRecord-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CaptureRecord-Info.plist"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		00F90B5215FFE93F00B5F4DF /* CaptureRecord */ = {
 			isa = PBXGroup;
 			children = (
+				0004914E16373E700083A8D0 /* License.pdf */,
 				00F90B5E15FFE9B200B5F4DF /* CaptureRecord.h */,
 				00F90B5F15FFE9B200B5F4DF /* CRCameraRecorder.h */,
 				00F90B6015FFE9B200B5F4DF /* CRCameraRecorder.m */,
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00F90B5715FFE93F00B5F4DF /* InfoPlist.strings in Resources */,
+				0004914F16373E700083A8D0 /* License.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
