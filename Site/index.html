@@ -84,19 +84,42 @@
         <li>Useful for basic usability testing.</li>
       </ul>
       
-      <p><a class="btn btn-primary btn-large" href="download/CaptureRecord-0.2.3.zip">Download</a></p>
-      <p>Version 0.2.3 (10/23/2012)</p>
-
-      <!--
-      <h2 id="install_cocoapods">CocoaPods</h2>
-      <p>Follow these steps in order to use the Capture Record iOS SDK within your own Xcode project using CocoaPods.</p>
-      -->
-
       <hr/>
       <h2>Install</h2>
+
+      <h3>CocoaPods</h3>
+      <p><a href="http://cocoapods.org/">CocoaPods</a> is the recommended way to add CaptureRecord to your project.</p>
+      <ul>
+        <li><p>Create a <code>Podfile</code>.</p>
+      <pre>
+platform :ios, '5.0'
+pod 'CaptureRecord', '~&gt; 0.2.3'
+</pre>
+      <p>Note the specification of iOS 5.0 as the platform; leaving out the 5.0 will cause CocoaPods to fail with the following message:<br/>
+         <code>[!] CaptureRecord (0.2.3) is not compatible with iOS 4.3.</code></p>
+      </li>
+      <li><p>Open the workspace. If you open the xcodeproj you won't see the Pods project included.</p></li>
+      <li>In the application delegate, import the framework:
+          <pre>
+#import &lt;CaptureRecord/CaptureRecord.h&gt;
+</pre>
+
+          Specify <code>CRUIWindow</code> as the <code>UIWindow</code> class:
+          <br/>
+          <pre>
+self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+</pre>
+        <p>This allows the framework to record touch events.</p>
+
+        <p>If your window is defined in interface builder, you'll need to change the window to use a Custom Class <code>CRUIWindow</code></p>
+
+        </li>
+      </ol>
+
+      <h3>Binary</h3>
       <p>Follow these steps in order to use the Capture Record iOS SDK within your own Xcode project as a statically linked framework.</p>
       <ol>
-        <li>Download</a> the latest SDK release and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
+        <li>Download</a> the latest <a href="download/CaptureRecord-0.2.3.zip">SDK release</a> and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
         <li>Add the following libraries to your app target's <code>Link Binary With Libraries</code> build phase:
           <ul>
             <li><code>AssetsLibrary.framework</code></li>
