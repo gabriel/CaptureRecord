@@ -50,6 +50,7 @@
 
 /*!
  Disable all controls and event listeners for the window.
+ @param disabled Disable
  */
 + (void)setDisabled:(BOOL)disabled;
 
