@@ -74,31 +74,43 @@
     <div class="container">
       
       <h1 class="logo">CaptureRecord</h1>
-      <p class="lead">User+Screen Recording iOS SDK</p>
-      <ul>
-        <li>Capture screen activity.</li>
-        <li>Record the tester's face (using the device's front facing camera).</li>
-        <li>Record the tester's voice (using the device's microphone).</li>
-        <li>Record user input and touch events.</li>
-        <li>Export as a single video to your camera roll.</li>
-        <li>Useful for basic usability testing.</li>
-      </ul>
-      
+      <p class="lead">User + Screen Recording iOS SDK</p>
+
+      <div class="row-fluid">
+        <div class="span2">
+          <img src="img/screenshot.png" width="160" height="240" class="img-polaroid"/>
+        </div>
+        <div class="span10">
+        <ul>
+          <li>Capture screen activity.</li>
+          <li>Record the tester's face (using the device's front facing camera).</li>
+          <li>Record the tester's voice (using the device's microphone).</li>
+          <li>Record user input and touch events.</li>
+          <li>Export as a single video to your camera roll.</li>
+          <li>Useful for basic usability testing.</li>
+        </ul>
+      </div>
+    </div>
+
+      <hr/>
+      <h2>Warning</h2>
+      <p>The SDK uses a private function UIGetScreenImage to record the screen. It is potentially unsafe and you should only use this for testing or generating videos. Although this private function call is obfuscated, you shouldn't submit apps to the store with this framework included.</p>
+
       <hr/>
       <h2>Install</h2>
 
       <h3>CocoaPods</h3>
       <p><a href="http://cocoapods.org/">CocoaPods</a> is the recommended way to add CaptureRecord to your project.</p>
-      <ul>
+      <ol>
         <li><p>Create a <code>Podfile</code>.</p>
       <pre>
 platform :ios, '5.0'
-pod 'CaptureRecord', '~&gt; 0.2.3'
+pod 'CaptureRecord', '~&gt; 0.2.4'
 </pre>
       <p>Note the specification of iOS 5.0 as the platform; leaving out the 5.0 will cause CocoaPods to fail with the following message:<br/>
-         <code>[!] CaptureRecord (0.2.3) is not compatible with iOS 4.3.</code></p>
+         <code>[!] CaptureRecord (0.2.4) is not compatible with iOS 4.3.</code></p>
       </li>
-      <li><p>Open the workspace. If you open the xcodeproj you won't see the Pods project included.</p></li>
+      <li><p>Open the workspace (not the xcodeproj).</p></li>
       <li>In the application delegate, import the framework:
           <pre>
 #import &lt;CaptureRecord/CaptureRecord.h&gt;
@@ -119,7 +131,7 @@ self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
       <h3>Binary</h3>
       <p>Follow these steps in order to use the Capture Record iOS SDK within your own Xcode project as a statically linked framework.</p>
       <ol>
-        <li>Download</a> the latest <a href="download/CaptureRecord-0.2.3.zip">SDK release</a> and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
+        <li>Download</a> the latest <a href="download/CaptureRecord-0.2.4.zip">SDK release</a> and drag <code>CaptureRecord.framework</code> into your project’s Frameworks section, adding it to your target.</li>
         <li>Add the following libraries to your app target's <code>Link Binary With Libraries</code> build phase:
           <ul>
             <li><code>AssetsLibrary.framework</code></li>
@@ -147,7 +159,7 @@ self.window = [[CRUIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
       <hr/>
       <h2>Source</h2>
-      <p>The project source is available on github, at <a href="https://github.com/gabriel/CaptureRecord">gabriel/CaptureRecord</a>, under a GPL license. Commercial licenses available soon.</p>
+      <p>The project source is available on github, at <a href="https://github.com/gabriel/CaptureRecord">gabriel/CaptureRecord</a>, under a GPL license. A commercial license is available at <a href="http://www.cocoacontrols.com/platforms/ios/controls/capturerecord">CocoaControls</a>.</p>
       <hr/>
 
       <h2>Support</h2>

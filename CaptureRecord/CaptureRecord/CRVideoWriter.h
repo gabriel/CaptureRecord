@@ -60,11 +60,28 @@
   NSUInteger _fps;
   NSTimeInterval _fpsTimeStart;
   
-  UIEvent *_event;
   NSMutableArray *_touches;
 }
 
 @property (readonly, strong) CRVideo *video;
+
+/*!
+ The size of the drawn touch circle.
+ Defaults to 40, 40.
+ */
+@property CGSize touchSize;
+
+/*!
+ The color of the touch circle.
+ Defaults to (255,0,0,0.5).
+ */
+@property (strong) UIColor *touchColor;
+
+/*!
+ How long the touch circle lingers, in seconds.
+ Defaults to 0.7 seconds.
+ */
+@property NSTimeInterval touchInterval;
 
 
 /*!

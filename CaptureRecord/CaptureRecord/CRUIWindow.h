@@ -37,10 +37,20 @@
 }
 
 /*!
+ Disable all controls and event listeners.
+ */
+@property BOOL disabled;
+
+/*!
  The current window instance.
  
  This is automatically set for most recent constructed CRUIWindow.
  */
 + (CRUIWindow *)window;
+
+/*!
+ Disable all controls and event listeners for the window.
+ */
++ (void)setDisabled:(BOOL)disabled;
 
 @end

@@ -6,11 +6,7 @@
 //  Copyright (c) 2012 Gabriel Handford. All rights reserved.
 //
 
-@interface CRAppDelegate : UIResponder <UIApplicationDelegate> {
-  YKUIViewStack *_viewStack;
-  
-  YKTableView *_tableView;
-}
+@interface CRAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) CRUIWindow *window;
 

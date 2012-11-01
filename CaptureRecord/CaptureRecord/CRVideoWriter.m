@@ -54,6 +54,9 @@
     size_t byteCount = (_bytesPerRow * _videoSize.height);
     _data = malloc(byteCount);
 
+    _touchSize = CGSizeMake(40, 40);
+    _touchInterval = 0.7;
+    _touchColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
   }
   return self;
 }
@@ -313,50 +316,54 @@
 }
 
 #pragma mark Events
-
-#define CR_TOUCH_ELAPSE (0.7)
-#define CR_TOUCH_SIZE CGSizeMake(40, 40)
-
-- (BOOL)_renderEvent:(UIEvent *)event context:(CGContextRef)context {
-  if (!event) return NO;
-  if (event.type != UIEventTypeTouches) return NO;  
-  
-  CGSize touchSize = CR_TOUCH_SIZE;
-  for (UITouch *touch in [[event allTouches] copy]) {
-    CGPoint p = [touch locationInView:touch.window];
-    // Flip
-    p.y = touch.window.frame.size.height - p.y;
-    CGRect rect = CGRectMake((-touchSize.width/2.0f) + p.x, (-touchSize.height/2.0f) + p.y, touchSize.width, touchSize.height);
-    
-    switch (touch.phase) {
-      case UITouchPhaseBegan:
-      case UITouchPhaseMoved:
-      case UITouchPhaseStationary: {
-        CGContextSetFillColorWithColor(context, [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5].CGColor);
-        CGContextFillEllipseInRect(context, rect);        
-        break;
-      }
-      case UITouchPhaseCancelled:
-      case UITouchPhaseEnded:
-        break;
-    }
-  }
-  return YES;
-}
-
+ 
 - (id<CRRecordable>)recordable {
   return [_recordables objectAtIndex:0];
 }
 
+- (UIColor *)_deriveColor:(UIColor *)color percentAlpha:(CGFloat)percentAlpha {
+	// oldComponents is the array INSIDE the original color
+	// changing these changes the original, so we copy it
+	CGFloat *oldComponents = (CGFloat *)CGColorGetComponents([color CGColor]);
+	int numComponents = CGColorGetNumberOfComponents([color CGColor]);
+	CGFloat components[4];
+  
+	switch (numComponents) {
+		case 2: { // Grayscale
+			components[0] = oldComponents[0];
+			components[1] = oldComponents[0];
+			components[2] = oldComponents[0];
+			components[3] = oldComponents[1] * percentAlpha;
+			break;
+		}
+		case 4: { // RGB
+			components[0] = oldComponents[0];
+			components[1] = oldComponents[1];
+			components[2] = oldComponents[2];
+			components[3] = oldComponents[3] * percentAlpha;
+			break;
+		}
+	}
+  
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGColorRef colorRef = CGColorCreate(colorSpace, components);
+	CGColorSpaceRelease(colorSpace);  
+	UIColor *derivedColor = [UIColor colorWithCGColor:colorRef];
+	CGColorRelease(colorRef);  
+	return derivedColor;
+}
+
 - (BOOL)_renderTouch:(CRUITouch *)touch context:(CGContextRef)context {
   NSTimeInterval elapsed = [NSDate timeIntervalSinceReferenceDate] - touch.time;
-  if (elapsed >= CR_TOUCH_ELAPSE) return NO;
-  CGFloat elapsedPercent = (1.0 - (elapsed/CR_TOUCH_ELAPSE));
-  CGSize touchSize = CR_TOUCH_SIZE;
+  if (elapsed >= _touchInterval) return NO;
+  CGFloat elapsedPercent = (1.0 - (elapsed/_touchInterval));
+  CGSize touchSize = _touchSize;
   
   CGPoint p = touch.point;
   CGRect rect = CGRectMake(-touchSize.width/2.0f + p.x, -touchSize.height/2.0f + p.y, touchSize.width, touchSize.height);
-  CGContextSetFillColorWithColor(context, [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5 * elapsedPercent].CGColor);
+    
+  UIColor *color = [self _deriveColor:_touchColor percentAlpha:elapsedPercent];
+  CGContextSetFillColorWithColor(context, color.CGColor);
   CGContextFillEllipseInRect(context, rect);
   return YES;
 }
@@ -376,7 +383,6 @@
   if (event.type != UIEventTypeTouches) return;
 
   @synchronized(self) {
-    _event = event;
     if (!_touches) _touches = [[NSMutableArray alloc] init];
     for (UITouch *touch in [event allTouches]) {
       if (touch.phase == UITouchPhaseEnded) {
@@ -422,7 +428,6 @@
     // Anti-alias for touches
     CGContextSetShouldAntialias(context, YES);
     @synchronized(self) {
-      [self _renderEvent:_event context:context];
       [self _renderTouchesInContext:context];
     }
   }

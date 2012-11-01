@@ -46,6 +46,10 @@ static CRUIWindow *gWindow = NULL;
   return gWindow;
 }
 
++ (void)setDisabled:(BOOL)disabled {
+  [[self window] setDisabled:disabled];
+}
+
 - (id)initWithFrame:(CGRect)frame {
   if ((self = [super initWithFrame:frame])) {
     [self sharedInit];
@@ -68,6 +72,7 @@ static CRUIWindow *gWindow = NULL;
 
 - (void)sendEvent:(UIEvent *)event {
   [super sendEvent:event];
+  if (_disabled) return;
   [self _gestureEvent:event];  
   [[NSNotificationCenter defaultCenter] postNotificationName:CRUIEventNotification object:event];
 }
