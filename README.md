@@ -1,3 +1,5 @@
+***This project is old, you might want to try [Lookback.io](http://lookback.io/) instead.***
+
 CaptureRecord
 ===============
 
